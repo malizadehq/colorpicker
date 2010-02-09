@@ -2,6 +2,7 @@ package com.nauj27.android.coloroid;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Log;
@@ -10,6 +11,7 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 
 public class ColoroidActivity extends Activity {
+	private static final String TAG = "ColoroidActivity";
 	static final int BITMAP_FROM_CAMERA = 0;
 	static final Intent imageCaptureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
 	
@@ -36,13 +38,16 @@ public class ColoroidActivity extends Activity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
     	if (requestCode == BITMAP_FROM_CAMERA) {
     		if (resultCode == RESULT_OK) {
-    			// Se recibe una foto devuelta por la aplicaci—n de la c‡mara.
-    			// TODO: Mostrar la foto y un bot—n abajo para hacer una nueva foto
-    			//       En la foto al tocar sale un mensaje con el c—digo de color!!
-    			Log.d("ColoroidActivity", "Datos recibidos");
+    			// TODO: Mostrar la foto al usuario
+    			Log.d(TAG, "data.toURI()" + data.toURI());
+    			
+    			BitmapFromUri bitmapFromUri = new BitmapFromUri(getContentResolver(), data.toURI());
+    			Bitmap bitmap = bitmapFromUri.getBitmap();
+    			
+    			
     		} else {
     			// TODO: Mostrar mensajito toast de "No se hizo ninguna foto" o similar.
-    			Log.e("ColoroidActivity", "Hubo un problema al recibir los datos");
+    			Log.e(TAG, "Hubo un problema al recibir los datos");
     		}
     	}
     }
