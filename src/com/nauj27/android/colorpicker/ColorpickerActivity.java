@@ -80,6 +80,10 @@ public class ColorpickerActivity extends Activity {
     	BitmapDrawable bitmapDrawable = (BitmapDrawable)imageView.getDrawable();
     	Bitmap imageBitmap = bitmapDrawable.getBitmap();
     	Log.d(TAG, "Bitmap size: " + imageBitmap.getWidth() + "x" + imageBitmap.getHeight());
+
+        // TODO: El punto correspondiente de la imagen será:
+        // ximage = x * (imageBitmap.getWidth() / imageView.getWidth())
+        // yimage = y * (imageBitmap.getHeight() / imageView.getHeight())
     	    	
     	for (int i = x - offset; i <= x + offset; i++) {
     		for (int j = y - offset; j <= y + offset; j++) {
