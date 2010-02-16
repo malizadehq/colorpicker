@@ -64,16 +64,21 @@ public class ColorpickerActivity extends Activity {
     
     /**
      * Find components of color of the bitmap at x, y. 
-     * @param x
-     * @param y
+     * @param x Distance from left border of the View
+     * @param y Distance from top of the View
+     * @param view Touched surface on screen
      */
     private void findColor(View view, int x, int y) {
-    	int offset = 1; // 3x3 Matrix
     	int red = 0;
     	int green = 0;
     	int blue = 0;
     	int color = 0;
+    	
+    	int offset = 1; // 3x3 Matrix
     	int pixelsNumber = 0;
+    	
+    	int xImage = 0;
+    	int yImage = 0;
     	
     	ImageView imageView = (ImageView)view;
     	Log.d(TAG, "View size: " + imageView.getWidth() + "x" + imageView.getHeight());
@@ -81,12 +86,14 @@ public class ColorpickerActivity extends Activity {
     	Bitmap imageBitmap = bitmapDrawable.getBitmap();
     	Log.d(TAG, "Bitmap size: " + imageBitmap.getWidth() + "x" + imageBitmap.getHeight());
 
-        // TODO: El punto correspondiente de la imagen será:
-        // ximage = x * (imageBitmap.getWidth() / imageView.getWidth())
-        // yimage = y * (imageBitmap.getHeight() / imageView.getHeight())
-    	    	
-    	for (int i = x - offset; i <= x + offset; i++) {
-    		for (int j = y - offset; j <= y + offset; j++) {
+        // Calculate the target in the bitmap.
+    	xImage = (int)(x * ((double)imageBitmap.getWidth() / (double)imageView.getWidth()));
+    	yImage = (int)(y * ((double)imageBitmap.getHeight() / (double)imageView.getHeight()));
+        Log.d(TAG, "Transformation: " + x + "x" + y + " => " + xImage + "x" + yImage);
+    	
+        // Average of pixels around the touched one.
+    	for (int i = xImage - offset; i <= xImage + offset; i++) {
+    		for (int j = yImage - offset; j <= yImage + offset; j++) {
     			try {
         			color = imageBitmap.getPixel(i, j);
         			red += Color.red(color);
@@ -112,7 +119,6 @@ public class ColorpickerActivity extends Activity {
     	int duration = Toast.LENGTH_SHORT;
     	Toast toast = Toast.makeText(context, msg, duration);
     	toast.show();
-    	// colorInt = bitmap.getPixel(x, y);
     }
     
     @Override
