@@ -1,5 +1,7 @@
 package com.nauj27.android.colorpicker;
 
+import java.io.File;
+
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -21,7 +23,29 @@ import android.widget.Toast;
 public class ColorpickerActivity extends Activity {
 	private static final String TAG = "ColorpickerActivity";
 	static final int BITMAP_FROM_CAMERA = 0;
-	static final Intent imageCaptureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+	static final Intent imageCaptureIntent = 
+		new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+	
+	/*
+	 * // fire off the intent
+		Intent i = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
+		i.putExtra(android.provider.MediaStore.EXTRA_OUTPUT, Uri.fromFile(new
+		File(Constants.TMPFILE_PATH)));
+		startActivityForResult(i, mRequestCode);
+		
+		// on activity return
+		File f = new File(Constants.TMPFILE_PATH);
+		try {
+		    Uri u =
+				Uri.parse(android.provider.MediaStore.Images.Media.insertImage(getContentResolver(),
+					fi.getAbsolutePath(), null, null));
+		    f.delete();
+		} catch (FileNotFoundException e) {
+		    // TODO Auto-generated catch block
+		    e.printStackTrace();
+		}
+	 */
+	
 	static final private int MENU_TAKE_PHOTO_ITEM = Menu.FIRST;
 	private boolean photoTaken = false;
 	
@@ -31,6 +55,8 @@ public class ColorpickerActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.photolayout);        
         imageCaptureIntent.putExtra("return-data", true);
+        //File f = new File(Constants.TMPFILE_PATH);
+        
         
         ImageView imageView = (ImageView)findViewById(R.id.ivPicture);
         imageView.setScaleType(ImageView.ScaleType.FIT_XY);
