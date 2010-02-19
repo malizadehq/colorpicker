@@ -22,6 +22,8 @@ import android.widget.Toast;
 
 public class ColorpickerActivity extends Activity {
 	private static final String TAG = "ColorpickerActivity";
+	private static final String IMAGE_CAPTURE_FILENAME = "ColorPicker.jpg";
+	
 	static final int BITMAP_FROM_CAMERA = 0;
 	static final Intent imageCaptureIntent = 
 		new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
@@ -55,8 +57,8 @@ public class ColorpickerActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.photolayout);        
         imageCaptureIntent.putExtra("return-data", true);
-        //File f = new File(Constants.TMPFILE_PATH);
-        
+        imageCaptureIntent.putExtra(MediaStore.EXTRA_OUTPUT, 
+        		Uri.fromFile(new File(IMAGE_CAPTURE_FILENAME)));
         
         ImageView imageView = (ImageView)findViewById(R.id.ivPicture);
         imageView.setScaleType(ImageView.ScaleType.FIT_XY);
@@ -183,6 +185,9 @@ public class ColorpickerActivity extends Activity {
     			Log.d(TAG, "Received Uri: " + data.toURI());
     			
     			Uri uri = Uri.parse(data.toURI());
+    			if (uri.toString().equals("")) {
+    				Uri.fromFile(new File(IMAGE_CAPTURE_FILENAME));
+    			}
     			BitmapFromUri bitmapFromUri = new BitmapFromUri(getContentResolver(), uri);
     			Bitmap bitmap = bitmapFromUri.getBitmap();
     			
