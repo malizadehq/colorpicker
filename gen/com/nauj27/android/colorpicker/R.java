@@ -15,9 +15,11 @@ public final class R {
     }
     public static final class id {
         public static final int ivPicture=0x7f050000;
+        public static final int surfaceViewCamera=0x7f050001;
     }
     public static final class layout {
         public static final int photolayout=0x7f030000;
+        public static final int takephotolayout=0x7f030001;
     }
     public static final class string {
         public static final int app_name=0x7f040001;

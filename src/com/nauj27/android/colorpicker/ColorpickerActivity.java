@@ -28,26 +28,6 @@ public class ColorpickerActivity extends Activity {
 	static final Intent imageCaptureIntent = 
 		new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
 	
-	/*
-	 * // fire off the intent
-		Intent i = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
-		i.putExtra(android.provider.MediaStore.EXTRA_OUTPUT, Uri.fromFile(new
-		File(Constants.TMPFILE_PATH)));
-		startActivityForResult(i, mRequestCode);
-		
-		// on activity return
-		File f = new File(Constants.TMPFILE_PATH);
-		try {
-		    Uri u =
-				Uri.parse(android.provider.MediaStore.Images.Media.insertImage(getContentResolver(),
-					fi.getAbsolutePath(), null, null));
-		    f.delete();
-		} catch (FileNotFoundException e) {
-		    // TODO Auto-generated catch block
-		    e.printStackTrace();
-		}
-	 */
-	
 	static final private int MENU_TAKE_PHOTO_ITEM = Menu.FIRST;
 	private boolean photoTaken = false;
 	
