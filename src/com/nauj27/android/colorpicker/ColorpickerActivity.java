@@ -152,6 +152,10 @@ public class ColorpickerActivity extends Activity {
     	switch(menuItem.getItemId()) {
 	    	case(MENU_TAKE_PHOTO_ITEM):
 	    		startActivityForResult(imageCaptureIntent, BITMAP_FROM_CAMERA);
+	    	
+	    		// Nuevo código para usar activity propia para la foto
+	    		Intent intent = new Intent();
+	    	
 	    		return true;
     	}
     	

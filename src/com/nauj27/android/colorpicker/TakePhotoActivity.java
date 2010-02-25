@@ -6,7 +6,6 @@ package com.nauj27.android.colorpicker;
 import java.io.IOException;
 
 import android.app.Activity;
-import android.content.Context;
 import android.hardware.Camera;
 import android.os.Bundle;
 import android.util.Log;
@@ -15,7 +14,6 @@ import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.View;
 import android.view.View.OnTouchListener;
-import android.widget.Toast;
 
 /**
  * @author nauj27
