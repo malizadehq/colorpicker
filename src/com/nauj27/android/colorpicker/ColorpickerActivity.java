@@ -20,15 +20,19 @@ import android.view.View.OnTouchListener;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-public class ColorpickerActivity extends Activity {
+/**
+ * Main activity for colorpicker.
+ * @author jmartin
+ * Extends Activity
+ */
+public class ColorPickerActivity extends Activity {
+	// Private constants.
 	private static final String TAG = "ColorpickerActivity";
 	private static final String IMAGE_CAPTURE_FILENAME = "ColorPicker.jpg";
+	private static final int BITMAP_FROM_CAMERA = 0;
+	private static final int MENU_TAKE_PHOTO_ITEM = Menu.FIRST;	
 	
-	static final int BITMAP_FROM_CAMERA = 0;
-	static final Intent imageCaptureIntent = 
-		new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-	
-	static final private int MENU_TAKE_PHOTO_ITEM = Menu.FIRST;
+	// Private variables.
 	private boolean photoTaken = false;
 	
     /** Called when the activity is first created. */
@@ -36,9 +40,9 @@ public class ColorpickerActivity extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.photolayout);        
-        imageCaptureIntent.putExtra("return-data", true);
-        imageCaptureIntent.putExtra(MediaStore.EXTRA_OUTPUT, 
-        		Uri.fromFile(new File(IMAGE_CAPTURE_FILENAME)));
+        //imageCaptureIntent.putExtra("return-data", true);
+        //imageCaptureIntent.putExtra(MediaStore.EXTRA_OUTPUT, 
+        //		Uri.fromFile(new File(IMAGE_CAPTURE_FILENAME)));
         
         ImageView imageView = (ImageView)findViewById(R.id.ivPicture);
         imageView.setScaleType(ImageView.ScaleType.FIT_XY);
@@ -145,17 +149,19 @@ public class ColorpickerActivity extends Activity {
     	return true;
     }
     
+    @Override
+    /**
+     * What to do when a option menu is selected.
+     * @param menuItem Item selected from menu.
+     */
     public boolean onOptionsItemSelected(MenuItem menuItem) {
     	super.onOptionsItemSelected(menuItem);
     	
     	// Search for menu item.
     	switch(menuItem.getItemId()) {
 	    	case(MENU_TAKE_PHOTO_ITEM):
-	    		startActivityForResult(imageCaptureIntent, BITMAP_FROM_CAMERA);
-	    	
-	    		// Nuevo código para usar activity propia para la foto
-	    		Intent intent = new Intent();
-	    	
+	    		Intent takePhotoIntent = new Intent(this, TakePhotoActivity.class);
+	    		startActivityForResult(takePhotoIntent, BITMAP_FROM_CAMERA);	    	
 	    		return true;
     	}
     	
@@ -163,6 +169,13 @@ public class ColorpickerActivity extends Activity {
     	return false;
     }
     
+    @Override
+    /**
+     * Overrides actions on activity result from other activity.
+     * @param requestCode The request code
+     * @param resultCode The result code
+     * @param data Data returned from activity
+     */
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
     	if (requestCode == BITMAP_FROM_CAMERA) {
     		if (resultCode == RESULT_OK) {
