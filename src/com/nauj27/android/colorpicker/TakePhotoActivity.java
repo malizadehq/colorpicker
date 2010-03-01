@@ -27,10 +27,10 @@ public class TakePhotoActivity extends Activity {
 	private static final String TAG = "TakePhotoActivity";
 	private Camera camera = null;
 	
-	private static final int PICTURE_SIZE_WIDTH = 480;
-	private static final int PICTURE_SIZE_HEIGHT = 640;
-	private static final int PREVIEW_SIZE_WIDTH = 640;
-	private static final int PREVIEW_SIZE_HEIGHT = 480;
+	private static final int PICTURE_SIZE_WIDTH = 320;
+	private static final int PICTURE_SIZE_HEIGHT = 240;
+	private static final int PREVIEW_SIZE_WIDTH = 480;
+	private static final int PREVIEW_SIZE_HEIGHT = 640;
 	
 	/** Called when the activity is first created. */
 	@Override
@@ -106,14 +106,14 @@ public class TakePhotoActivity extends Activity {
 			
 			Camera.Parameters cameraParameters = camera.getParameters();
 			
-			cameraParameters.setPictureSize(PICTURE_SIZE_WIDTH, PICTURE_SIZE_HEIGHT);
+			//cameraParameters.setPictureSize(PICTURE_SIZE_WIDTH, PICTURE_SIZE_HEIGHT);
 			cameraParameters.setPreviewSize(PREVIEW_SIZE_WIDTH, PREVIEW_SIZE_HEIGHT);
 			cameraParameters.setPictureFormat(PixelFormat.JPEG);
 			
 			// FIXME: Esto solo funciona con el teléfono en vertical.
 			// Al menos en el HTC Hero. Si no se pone se tuerce la imagen.
 			// En el magic se tuerce la vista previa!!
-			//cameraParameters.set("rotation", 90);
+			cameraParameters.set("rotation", 90);
 
 			camera.setParameters(cameraParameters);
 			camera.startPreview();
