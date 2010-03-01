@@ -12,6 +12,7 @@ import android.hardware.Camera;
 import android.hardware.Camera.AutoFocusCallback;
 import android.hardware.Camera.PictureCallback;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.View;
@@ -27,9 +28,9 @@ public class TakePhotoActivity extends Activity {
 	private Camera camera = null;
 	
 	private static final int PICTURE_SIZE_WIDTH = 480;
-	private static final int PICTURE_SIZE_HEIGHT = 320;
-	private static final int PREVIEW_SIZE_WIDTH = 480;
-	private static final int PREVIEW_SIZE_HEIGHT = 320;
+	private static final int PICTURE_SIZE_HEIGHT = 640;
+	private static final int PREVIEW_SIZE_WIDTH = 640;
+	private static final int PREVIEW_SIZE_HEIGHT = 480;
 	
 	/** Called when the activity is first created. */
 	@Override
@@ -98,14 +99,21 @@ public class TakePhotoActivity extends Activity {
 		public void surfaceChanged(
 				SurfaceHolder surfaceHolder, int format, int width, int height) {
 			
+			Log.d(TAG, "SurfaceHolder size: "
+					.concat(new Integer(width).toString())
+					.concat("x")
+					.concat(new Integer(height).toString()));
+			
 			Camera.Parameters cameraParameters = camera.getParameters();
 			
 			cameraParameters.setPictureSize(PICTURE_SIZE_WIDTH, PICTURE_SIZE_HEIGHT);
 			cameraParameters.setPreviewSize(PREVIEW_SIZE_WIDTH, PREVIEW_SIZE_HEIGHT);
 			cameraParameters.setPictureFormat(PixelFormat.JPEG);
+			
 			// FIXME: Esto solo funciona con el teléfono en vertical.
 			// Al menos en el HTC Hero. Si no se pone se tuerce la imagen.
-			cameraParameters.set("rotation", 90);
+			// En el magic se tuerce la vista previa!!
+			//cameraParameters.set("rotation", 90);
 
 			camera.setParameters(cameraParameters);
 			camera.startPreview();
