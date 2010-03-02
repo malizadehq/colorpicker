@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="make_photo">Hacer foto</string>
+    
+    <string name="app_name">Color Picker</string>
+<string name="menu_take_photo_item">Hacer foto</string>
+<string name="help_message">Haga una foto usando la tecla de menú</string>
+</resources>
