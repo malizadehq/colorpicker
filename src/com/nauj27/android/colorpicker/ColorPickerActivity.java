@@ -3,9 +3,11 @@ package com.nauj27.android.colorpicker;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
+import android.graphics.PixelFormat;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.util.Log;
@@ -13,6 +15,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.view.View.OnTouchListener;
 import android.widget.ImageView;
 import android.widget.Toast;
@@ -34,11 +38,26 @@ public class ColorPickerActivity extends Activity {
     /** Called when the activity is first created. */
     @Override
     public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+        
+    	super.onCreate(savedInstanceState);
+        
+    	// From http://www.designerandroid.com/?p=73
+    	// This is the only way camera preview work on all android devices
+    	this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+		
+    	// No title, no name: Fullscreen
+    	getWindow().setFormat(PixelFormat.TRANSLUCENT);
+		requestWindowFeature(Window.FEATURE_NO_TITLE);
+		getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+				WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        
         setContentView(R.layout.color_picker_layout);
         
         ImageView imageView = (ImageView)findViewById(R.id.ivPicture);
         imageView.setScaleType(ImageView.ScaleType.FIT_XY);
+        
+        // Background splash image
+        imageView.setBackgroundResource(R.drawable.splash);
         
         imageView.setOnTouchListener(new OnTouchListener() {
 			@Override
@@ -56,7 +75,7 @@ public class ColorPickerActivity extends Activity {
 							findColor(view, x, y);
 						} else {
 					    	Context context = getApplicationContext();
-					    	CharSequence charSequence = "Haga una foto usando la tecla menu";
+					    	CharSequence charSequence = getString(R.string.help_message);
 					    	int duration = Toast.LENGTH_SHORT;
 					    	Toast toast = Toast.makeText(context, charSequence, duration);
 					    	toast.show();
@@ -190,6 +209,13 @@ public class ColorPickerActivity extends Activity {
 	    			
 	    			ImageView imageView = (ImageView)findViewById(R.id.ivPicture);
 	    			imageView.setImageBitmap(bitmap);
+	    			
+	    			// Show a bit of help :)
+	    			Context context = getApplicationContext();
+	    	    	CharSequence charSequence = getString(R.string.color_picker_photo_help);
+	    	    	int duration = Toast.LENGTH_LONG;
+	    	    	Toast toast = Toast.makeText(context, charSequence, duration);
+	    	    	toast.show();
 	    			
 	    			photoTaken = true;
 	    			

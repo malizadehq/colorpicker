@@ -12,6 +12,8 @@ public final class R {
     }
     public static final class drawable {
         public static final int icon=0x7f020000;
+        public static final int oldicon=0x7f020001;
+        public static final int splash=0x7f020002;
     }
     public static final class id {
         public static final int ivPicture=0x7f050000;
@@ -23,8 +25,10 @@ public final class R {
     }
     public static final class string {
         public static final int app_name=0x7f040001;
+        public static final int color_picker_photo_help=0x7f040005;
         public static final int help_message=0x7f040003;
         public static final int make_photo=0x7f040000;
         public static final int menu_take_photo_item=0x7f040002;
+        public static final int take_photo_help=0x7f040004;
     }
 }
