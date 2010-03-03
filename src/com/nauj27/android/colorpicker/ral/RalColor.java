@@ -3,29 +3,37 @@
  */
 package com.nauj27.android.colorpicker.ral;
 
-import android.graphics.Color;
 
 /**
- * @author jmartin
+ * @author nauj27
  *
  */
-public class RalColor extends Color{
-	private int ralCode;
-	/*private int red;
-	private int green;
-	private int blue;
-	private int hexValue;*/
+public class RalColor {
+	private int index;
+
+	/**
+	 * @param index the index to set
+	 */
+	private void setIndex(int index) {
+		this.index = index;
+	}
+
+	/**
+	 * @return the index
+	 */
+	public int getIndex() {
+		return index;
+	}
 	
 	/**
-	 * @param ralCode the ralCode to set
+	 * Set the RAL index of a color int.
+	 * @param color the color int to search
 	 */
-	public void setRalCode(int ralCode) {
-		this.ralCode = ralCode;
+	public void searchColor(int color) {
+		
+		// Pongo el primer elemento como índice para probar
+		this.setIndex(1000);
+		
 	}
-	/**
-	 * @return the ralCode
-	 */
-	public int getRalCode() {
-		return ralCode;
-	}
+	
 }

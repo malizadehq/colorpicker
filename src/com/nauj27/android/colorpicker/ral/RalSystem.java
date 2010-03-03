@@ -8,7 +8,7 @@ package com.nauj27.android.colorpicker.ral;
  *
  */
 public class RalSystem {
-	public int[] code = {
+	public static int[] code = {
 		1000, 1001, 1002, 1003, 1004, 1005, 1006, 1007, 1011, 1012, 1013, 1014, 
 		1015, 1016, 1017, 1018, 1019, 1020, 1021, 1023,	1024, 1026, 1027, 1028,
 		1032, 1033, 1034, 1035, 1036, 1037, 2000, 2001, 2002, 2003, 2004, 2005,
@@ -29,7 +29,7 @@ public class RalSystem {
 		9011, 9016, 9017, 9018, 9022, 9023
 	};
 	
-	public int[] red = {
+	public static int[] red = {
 		190, 194, 198, 229, 205, 169, 228, 220, 138, 199, 234, 225,	230, 237,
 		245, 248, 158, 153, 243, 250, 174, 255, 157, 244, 214, 243, 239, 106,
 		112, 243, 237, 201, 203, 255, 244, 255, 255, 247, 245, 216, 236, 235,
@@ -47,7 +47,7 @@ public class RalSystem {
 		250, 231, 244,  40,  10, 165, 143, 255,  28, 246,  30, 215, 156, 130
 	};
 
-	public int[] green = {
+	public static int[] green = {
  		189, 176, 166, 190, 164, 131, 160, 156, 102, 180, 230, 204,	214, 255,
  		208, 243, 151, 153, 218, 210, 160, 255, 145, 169, 174, 165, 169,  93,
  		 83, 159, 118,  60,  40, 117,  70,  35, 164,  94,  64,  75, 124, 106,
@@ -65,7 +65,7 @@ public class RalSystem {
 		244, 235, 244,  40,  10, 165, 143, 255,  28, 246,  30, 215, 156, 130
 	};
 	
-	public int[] blue = {
+	public static int[] blue = {
 		127, 120, 100,  1,  52,   7,  16,   0,  66,  70, 202,  79,	144,  33,
 		 51,  53, 100,  80,  11,   1,  75,   0,   1,   0,   1,   5,  74,  77,
 		 53,  24,  14,  32,  33,  20,  17,   1,  32,  37,  33,  32,  38,  14,
@@ -83,7 +83,7 @@ public class RalSystem {
 		227, 218, 244,  40,  10, 165, 143, 255,  28, 246,  30, 215, 156, 130
 	};
 	
-	public int[] hex = {
+	public static int[] hex = {
 		0xBEBD7F, 0xC2B078, 0xC6A664, 0xE5BE01, 0xCDA434, 0xA98307, 
 		0xE4A010, 0xDC9D00, 0x8A6642, 0xC7B446, 0xEAE6CA, 0xE1CC4F, 
 		0xE6D690, 0xEDFF21, 0xF5D033, 0xF8F32B, 0x9E9764, 0x999950, 
@@ -122,7 +122,7 @@ public class RalSystem {
 	};
 	
 	// TODO: Esto deberían de ser strings para cada idioma en res/strings!!
-	public String[] names = {
+	public static String[] names = {
 		"Beige verdoso", "Beige", "Amarillo arena", "Amarillo señales", 
 		"Amarillo oro", "Amarillo miel", "Amarillo maiz", "Amarillo narciso",
 		"Beige pardo", "Amarillo limón", "Blanco perla", "Marfil",
@@ -178,7 +178,4 @@ public class RalSystem {
 		"Blanco puro", "Negro grafito", "Blanco tráfico", "Negro tráfico",
 		"Blanco papiro", "Gris claro perlado", "Gris oscuro perlado" 
 	};
-	
-
-
 }
