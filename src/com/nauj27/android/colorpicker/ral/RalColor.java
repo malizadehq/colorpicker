@@ -3,18 +3,76 @@
  */
 package com.nauj27.android.colorpicker.ral;
 
+import android.graphics.Color;
+
 
 /**
  * @author nauj27
  *
  */
 public class RalColor {
-	private int index;
-
+	/** The RAL index. */
+	private int index = 0;
+	/** The difference with the RAL more closed. */
+	private double difference = 512;
+	
+	/**
+	 * Creates a new RalColor without index value
+	 */
+	public RalColor() {}
+	
+	/**
+	 * Search and set the RAL index of a color int and the difference.
+	 * @param color the color int to search
+	 */
+	public RalColor(int color) {
+		int index = 0;
+		int i = 0;
+		double differencetmp = 0;
+		double difference = 512;
+		final int size = RalSystem.code.length;
+		
+		while (i < size) {
+			// Euclidian distance in 3D color space 
+			differencetmp = Math.sqrt(
+				Math.pow(RalSystem.red[i] - Color.red(color), 2) +
+				Math.pow(RalSystem.green[i] - Color.green(color), 2) +
+				Math.pow(RalSystem.blue[i] - Color.blue(color), 2)
+			);
+			
+			if (differencetmp < difference) {
+				difference = differencetmp;
+				index = i;
+			}
+			i++;
+		}
+		
+		setIndex(index);
+		setDifference(difference);
+	}
+	
+	public String getName() {
+		if (index == 0) {
+			return "Unknown";
+		} else {
+			return RalSystem.names[index];
+		}
+	}
+	
+	public int getCode() {
+		if (index == 0) {
+			return 0;
+		} else {
+			return RalSystem.code[index];
+		}
+	}
+	
+	// Getters and setters
+	
 	/**
 	 * @param index the index to set
 	 */
-	private void setIndex(int index) {
+	public void setIndex(int index) {
 		this.index = index;
 	}
 
@@ -24,16 +82,19 @@ public class RalColor {
 	public int getIndex() {
 		return index;
 	}
-	
+
 	/**
-	 * Set the RAL index of a color int.
-	 * @param color the color int to search
+	 * @param difference the difference to set
 	 */
-	public void searchColor(int color) {
-		
-		// Pongo el primer elemento como índice para probar
-		this.setIndex(1000);
-		
+	public void setDifference(double difference) {
+		this.difference = difference;
+	}
+
+	/**
+	 * @return the difference
+	 */
+	public double getDifference() {
+		return difference;
 	}
 	
 }

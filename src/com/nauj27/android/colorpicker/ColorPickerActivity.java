@@ -1,5 +1,7 @@
 package com.nauj27.android.colorpicker;
 
+import com.nauj27.android.colorpicker.ral.RalColor;
+
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -72,11 +74,13 @@ public class ColorPickerActivity extends Activity {
 						Log.d(TAG, "Position: " + x + ", " + y);
 						if (photoTaken) {
 							int color = Utils.findColor(view, x, y);
+							RalColor ralColor = new RalColor(color);
 							
 							CharSequence msg = "Color: (" 
 								+ Color.red(color) + ", "
 								+ Color.green(color) + ", "
-								+ Color.blue(color) + ")";
+								+ Color.blue(color) + ") "
+								+ ralColor.getName();
 							Context context = getApplicationContext();
 					    	int duration = Toast.LENGTH_SHORT;
 					    	Toast toast = Toast.makeText(context, msg, duration);
