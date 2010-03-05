@@ -107,10 +107,8 @@ public class ColorPickerActivity extends Activity {
     	int menuItemOrder = Menu.NONE;
     	int menuItemText = R.string.menu_take_photo_item;
     	
-    	// Create the menu item and keep a reference to it.
-    	//MenuItem menuItem = menu.add(groupId, menuItemId, menuItemOrder, menuItemText);
-    	menu.add(groupId, menuItemId, menuItemOrder, menuItemText);
-    	//menuItem.setIcon(R.drawable.menu_item_icon);
+    	MenuItem menuItem = menu.add(groupId, menuItemId, menuItemOrder, menuItemText);
+    	menuItem.setIcon(android.R.drawable.ic_menu_camera);
     	return true;
     }
     
