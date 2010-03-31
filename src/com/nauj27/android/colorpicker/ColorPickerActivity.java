@@ -43,7 +43,8 @@ public class ColorPickerActivity extends Activity {
     	super.onCreate(savedInstanceState);
         
     	// From http://www.designerandroid.com/?p=73
-    	// This is the only way camera preview work on all android devices
+    	// This is the only way camera preview work on all android devices at
+    	// fullscreen
     	this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
 		
     	// No title, no name: Fullscreen
