@@ -30,8 +30,9 @@ public class TakePhotoActivity extends Activity {
 	private static final String TAG = "TakePhotoActivity";
 	private Camera camera = null;
 	
-	private static final int PICTURE_SIZE_WIDTH = 352;
-	private static final int PICTURE_SIZE_HEIGHT = 288;
+	// FIXME: size is not standard, but only can use getValid in 2.1 :(
+	private static final int PICTURE_SIZE_WIDTH = 512; //352;
+	private static final int PICTURE_SIZE_HEIGHT = 384; //288;
 	private static final int PREVIEW_SIZE_WIDTH = 352;
 	private static final int PREVIEW_SIZE_HEIGHT = 288;
 	
