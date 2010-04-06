@@ -11,11 +11,14 @@ public final class R {
     public static final class attr {
     }
     public static final class drawable {
-        public static final int icon=0x7f020000;
-        public static final int oldicon=0x7f020001;
-        public static final int splash=0x7f020002;
+        public static final int btn_camera=0x7f020000;
+        public static final int icon=0x7f020001;
+        public static final int oldicon=0x7f020002;
+        public static final int picker=0x7f020003;
+        public static final int splash=0x7f020004;
     }
     public static final class id {
+        public static final int ImageCameraButton=0x7f050002;
         public static final int ivPicture=0x7f050000;
         public static final int surfaceViewCamera=0x7f050001;
     }
