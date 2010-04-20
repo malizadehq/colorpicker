@@ -23,7 +23,7 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 /**
- * Main activity for color picker.
+ * This activity receive a picture and show touched color.
  * @author nauj27
  * Extends Activity
  */

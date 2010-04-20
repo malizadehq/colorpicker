@@ -7,7 +7,7 @@
 
 
 <SurfaceView android:id="@+id/surfaceViewCamera" 
-    android:layout_height="fill_parent" android:layout_width="fill_parent"></SurfaceView><ImageButton android:layout_height="wrap_content" android:layout_width="wrap_content" android:background="@drawable/btn_camera" android:id="@+id/ImageCameraButton" android:layout_y="120dip" android:layout_x="370dip"></ImageButton>
+    android:layout_height="fill_parent" android:layout_width="fill_parent"></SurfaceView><ImageButton android:layout_height="wrap_content" android:layout_width="wrap_content" android:background="@drawable/btn_camera" android:id="@+id/ImageCameraButton" android:layout_y="120dip" android:layout_x="370dip" android:clickable="true"></ImageButton>
 
 
 
