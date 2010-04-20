@@ -6,7 +6,6 @@ package com.nauj27.android.colorpicker;
 import java.io.IOException;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.graphics.PixelFormat;
@@ -20,11 +19,12 @@ import android.view.SurfaceView;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.Toast;
+import android.widget.ImageButton;
 
 /**
+ * This activity make focus and take a photo.
  * @author nauj27
- *
+ * Extends Activity
  */
 public class TakePhotoActivity extends Activity {
 	private static final String TAG = "TakePhotoActivity";
@@ -54,9 +54,10 @@ public class TakePhotoActivity extends Activity {
 		
 		setContentView(R.layout.take_photo_layout);
 		
-		SurfaceView surfaceView = (SurfaceView)findViewById(R.id.surfaceViewCamera);
-		surfaceView.setOnClickListener(onClickListener);
+		ImageButton imageCameraButton = (ImageButton)findViewById(R.id.ImageCameraButton);
+		imageCameraButton.setOnClickListener(onClickListener);
 		
+		SurfaceView surfaceView = (SurfaceView)findViewById(R.id.surfaceViewCamera);
 		SurfaceHolder surfaceHolder = surfaceView.getHolder();
 		surfaceHolder.addCallback(surfaceCallback);
 		surfaceHolder.setType(SurfaceHolder.SURFACE_TYPE_PUSH_BUFFERS);
@@ -64,12 +65,10 @@ public class TakePhotoActivity extends Activity {
 	}
 	
 	private View.OnClickListener onClickListener = new View.OnClickListener() {
-		
 		@Override
 		public void onClick(View arg0) {
 			camera.autoFocus(autoFocusCallback);
 		}
-
 	};
 
 	
@@ -122,11 +121,11 @@ public class TakePhotoActivity extends Activity {
 		public void surfaceCreated(SurfaceHolder surfaceHolder) {
 			
 			// Show a bit of help :)
-			Context context = getApplicationContext();
-	    	CharSequence charSequence = getString(R.string.take_photo_help);
-	    	int duration = Toast.LENGTH_LONG;
-	    	Toast toast = Toast.makeText(context, charSequence, duration);
-	    	toast.show();
+			//Context context = getApplicationContext();
+//	    	CharSequence charSequence = getString(R.string.take_photo_help);
+//	    	int duration = Toast.LENGTH_LONG;
+//	    	Toast toast = Toast.makeText(context, charSequence, duration);
+//	    	toast.show();
 			
 			camera = Camera.open();
 			
