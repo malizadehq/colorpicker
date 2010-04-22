@@ -81,16 +81,13 @@ public class TakePhotoActivity extends Activity {
 	
 	
 	private PictureCallback jpegCallback = new PictureCallback() {
-
 		@Override
 		public void onPictureTaken(byte[] jpegPicture, Camera camera) {
 			final String JPEG_PICTURE = "JPEG_PICTURE";
 			
-			Intent photoIntent = new Intent();			
-			photoIntent.putExtra(JPEG_PICTURE , jpegPicture);
-			setResult(RESULT_OK, photoIntent);
-			
-			finish();
+			Intent colorPickerIntent = new Intent(getApplicationContext(), ColorPickerActivity.class);
+			colorPickerIntent.putExtra(JPEG_PICTURE, jpegPicture);
+			startActivity(colorPickerIntent);
 		}
 	};
 	
@@ -118,15 +115,7 @@ public class TakePhotoActivity extends Activity {
 		}
 
 		@Override
-		public void surfaceCreated(SurfaceHolder surfaceHolder) {
-			
-			// Show a bit of help :)
-			//Context context = getApplicationContext();
-//	    	CharSequence charSequence = getString(R.string.take_photo_help);
-//	    	int duration = Toast.LENGTH_LONG;
-//	    	Toast toast = Toast.makeText(context, charSequence, duration);
-//	    	toast.show();
-			
+		public void surfaceCreated(SurfaceHolder surfaceHolder) {		
 			camera = Camera.open();
 			
 			try {
