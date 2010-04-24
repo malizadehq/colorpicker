@@ -7,4 +7,6 @@
 <string name="help_message">Haga una foto usando la tecla de menú</string>
 <string name="take_photo_help">Toca la pantalla para enfocar y hacer una foto</string>
 <string name="color_picker_photo_help">Toca un punto de la imagen para ver el color</string>
+
+<string name="menu_take_photo_exit">Salir</string>
 </resources>
