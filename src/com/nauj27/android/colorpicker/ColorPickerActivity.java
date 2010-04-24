@@ -28,6 +28,7 @@ public class ColorPickerActivity extends Activity {
 	// Private constants.
 	private static final String TAG = "ColorPickerActivity";
 	private static final String JPEG_PICTURE = "JPEG_PICTURE";
+	private static final int DIALOG_COLOR_ID = 0;
 
     /** Called when the activity is first created. */
     @Override
@@ -97,6 +98,25 @@ public class ColorPickerActivity extends Activity {
 						int color = Utils.findColor(view, x, y);
 						RalColor ralColor = new RalColor(color);
 						
+						// This is how to show color with dialog
+						/*protected Dialog onCreateDialog(int id) {
+						    Dialog dialog;
+						    switch(id) {
+						    case DIALOG_PAUSED_ID:
+						        // do the work to define the pause Dialog
+						        break;
+						    case DIALOG_GAMEOVER_ID:
+						        // do the work to define the game over Dialog
+						        break;
+						    default:
+						        dialog = null;
+						    }
+						    return dialog;
+						}*/
+						// And then:
+						// showDialog(DIALOG_PAUSED_ID);
+						
+						// This is how to show color with toast
 						CharSequence msg = "Color: (" 
 							+ Color.red(color) + ", "
 							+ Color.green(color) + ", "
