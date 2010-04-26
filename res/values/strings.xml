@@ -9,4 +9,8 @@
 <string name="color_picker_photo_help">Toca un punto de la imagen para ver el color</string>
 
 <string name="menu_take_photo_exit">Salir</string>
+<string name="result_color_name">Nombre del color</string>
+<string name="result_color_ral">RAL:</string>
+<string name="result_color_rgb">RGB:</string>
+<string name="result_color_hex">HEX:</string>
 </resources>
