@@ -1,13 +1,12 @@
 package com.nauj27.android.colorpicker;
 
-import com.nauj27.android.colorpicker.ral.RalColor;
-
 import android.app.Activity;
+import android.app.Dialog;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.pm.ActivityInfo;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.Color;
 import android.graphics.PixelFormat;
 import android.os.Bundle;
 import android.util.Log;
@@ -19,6 +18,8 @@ import android.view.View.OnTouchListener;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.nauj27.android.colorpicker.ral.RalColor;
+
 /**
  * This activity receive a picture and show touched color.
  * @author nauj27
@@ -28,7 +29,10 @@ public class ColorPickerActivity extends Activity {
 	// Private constants.
 	private static final String TAG = "ColorPickerActivity";
 	private static final String JPEG_PICTURE = "JPEG_PICTURE";
-	private static final int DIALOG_COLOR_ID = 0;
+	
+	// Magic numbers :)
+	private static final int DIALOG_RESULT_ID = 0;
+	
 
     /** Called when the activity is first created. */
     @Override
@@ -79,6 +83,8 @@ public class ColorPickerActivity extends Activity {
 	    	finishActivity(RESULT_CANCELED);
         }
         
+        
+        
         /**
          * Set the listener for touch event into the image view.
          */
@@ -98,26 +104,14 @@ public class ColorPickerActivity extends Activity {
 						int color = Utils.findColor(view, x, y);
 						RalColor ralColor = new RalColor(color);
 						
+						
 						// This is how to show color with dialog
-						/*protected Dialog onCreateDialog(int id) {
-						    Dialog dialog;
-						    switch(id) {
-						    case DIALOG_PAUSED_ID:
-						        // do the work to define the pause Dialog
-						        break;
-						    case DIALOG_GAMEOVER_ID:
-						        // do the work to define the game over Dialog
-						        break;
-						    default:
-						        dialog = null;
-						    }
-						    return dialog;
-						}*/
 						// And then:
-						// showDialog(DIALOG_PAUSED_ID);
+						showDialog(DIALOG_RESULT_ID);
+						
 						
 						// This is how to show color with toast
-						CharSequence msg = "Color: (" 
+						/*CharSequence msg = "Color: (" 
 							+ Color.red(color) + ", "
 							+ Color.green(color) + ", "
 							+ Color.blue(color) + ") "
@@ -125,10 +119,32 @@ public class ColorPickerActivity extends Activity {
 						Context context = getApplicationContext();
 				    	int duration = Toast.LENGTH_SHORT;
 				    	Toast toast = Toast.makeText(context, msg, duration);
-				    	toast.show();
+				    	toast.show();*/
 				}
 				return false;
 			}
 		});
+    }
+    
+    protected Dialog onCreateDialog(int id) {
+    	Dialog dialog = null;
+    	
+    	switch(id) {
+    	case DIALOG_RESULT_ID:
+    		/*
+    		Context mContext = getApplicationContext();
+			dialog = new Dialog(mContext);
+			
+			dialog.setContentView(R.layout.result_layout);
+			dialog.setTitle("Color elegido");
+			
+			TextView textView = (TextView)dialog.findViewById(R.id.TextViewRal);
+			textView.setText("RAL: ASDFASF");*/
+    		ProgressDialog pdialog = ProgressDialog.show(ColorPickerActivity.this, "", "foh", true);
+    		break;
+    	default:
+    		dialog = null;
+    	}
+    	return dialog;
     }
 }
