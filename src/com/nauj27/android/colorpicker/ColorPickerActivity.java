@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.pm.ActivityInfo;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.graphics.PixelFormat;
 import android.os.Bundle;
 import android.util.Log;
@@ -102,49 +103,76 @@ public class ColorPickerActivity extends Activity {
 						Log.d(TAG, "Position: " + x + ", " + y);
 						
 						int color = Utils.findColor(view, x, y);
-						ralColor = new RalColor(color);
+						if (ralColor == null) { 
+							ralColor = new RalColor(color);
+						} else {
+							ralColor.setColor(color);
+						}
 						
-						// This is how to show color with dialog
 						showDialog(DIALOG_RESULT_ID);
-						
-						// This is how to show color with toast
-						/*CharSequence msg = "Color: (" 
-							+ Color.red(color) + ", "
-							+ Color.green(color) + ", "
-							+ Color.blue(color) + ") "
-							+ ralColor.getName();
-						Context context = getApplicationContext();
-				    	int duration = Toast.LENGTH_SHORT;
-				    	Toast toast = Toast.makeText(context, msg, duration);
-				    	toast.show();*/
 				}
 				return false;
 			}
 		});
     }
     
+    @Override
     protected Dialog onCreateDialog(int id) {
-    	Dialog dialog = null;
+    	super.onCreateDialog(id);
+    	
+    	Dialog dialog;
     	
     	switch(id) {
     	case DIALOG_RESULT_ID:
     		dialog = new Dialog(this);
 			dialog.setContentView(R.layout.result_layout);
-			dialog.setTitle("Color elegido");
-			
-			TextView textViewRal = (TextView)dialog.findViewById(R.id.TextViewRal);
-			textViewRal.setText(
-				"RAL: ".concat(Integer.toString(ralColor.getCode(), 10)));
-			
-			//TextView textViewRgb = (TextView)dialog.findViewById(R.id.TextViewRgb);
-			
-			TextView textViewHex = (TextView)dialog.findViewById(R.id.TextViewHex);
-			textViewHex.setText(
-				"HEX: ".concat(Integer.toString(ralColor.getCode(), 10)));
     		break;
     	default:
     		dialog = null;
     	}
     	return dialog;
+    }
+    
+    @Override
+    protected void onPrepareDialog(int id, Dialog dialog) {
+    	super.onPrepareDialog(id, dialog);
+    	
+    	// I really don't know if Android calls onPrepareDialog when
+    	// dialog is null.
+    	if (dialog == null) {
+    		Log.w(TAG, "Error preparing result dialog.");
+    		return;
+    	}
+    	
+    	switch(id) {
+    	case DIALOG_RESULT_ID:
+    		int red = Color.red(ralColor.getColor());
+    		int green = Color.green(ralColor.getColor());
+    		int blue = Color.blue(ralColor.getColor());
+    		
+			dialog.setTitle(ralColor.getName());
+			
+			ImageView imageViewColor = (ImageView)dialog.findViewById(R.id.ImageViewColor);
+			imageViewColor.setBackgroundColor(ralColor.getColor());
+			
+			TextView textViewRal = (TextView)dialog.findViewById(R.id.TextViewRal);
+			textViewRal.setText(
+				"RAL: ".concat(Integer.toString(ralColor.getCode(), 10)));
+			
+			TextView textViewRgb = (TextView)dialog.findViewById(R.id.TextViewRgb);
+			textViewRgb.setText(
+				"RGB: ".concat(Integer.toString(red , 10)).
+				concat(", ").concat(Integer.toString(green, 10)).
+				concat(", ").concat(Integer.toString(blue, 10)));
+				
+			TextView textViewHex = (TextView)dialog.findViewById(R.id.TextViewHex);
+			textViewHex.setText(
+				"HEX: #".concat(Utils.beautyHexString(Integer.toHexString(red))).
+				concat(Utils.beautyHexString(Integer.toHexString(green))).
+				concat(Utils.beautyHexString(Integer.toHexString(blue))));
+    		break;
+    	default:
+    		break;
+    	}
     }
 }

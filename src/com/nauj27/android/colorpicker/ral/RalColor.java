@@ -18,56 +18,35 @@ public class RalColor {
 	/** The difference with the RAL more closed. */
 	private double difference = 512;
 	
+	private static final int DEFAULT_COLOR_INDEX = 0;
+	private static final int MAX_COLOR_DIFFERENCE = 512;
+	
 	/**
 	 * Creates a new RalColor without index value
 	 */
 	public RalColor() {}
 	
 	/**
-	 * Search and set the RAL index of a color int and the difference.
-	 * @param color the color int to search
+	 * Search and set the RAL index of a color integer and the difference.
+	 * @param color the color integer to search into the RAL Color System
 	 */
 	public RalColor(int color) {
-		this.index = 0;
-		this.color = color;
-		
-		int i = 0;
-		double differencetmp = 0;
-		double difference = 512;
-		final int size = RalSystem.code.length;
-		
-		while (i < size) {
-			// Euclidian distance in 3D color space 
-			differencetmp = Math.sqrt(
-				Math.pow(RalSystem.red[i] - Color.red(color), 2) +
-				Math.pow(RalSystem.green[i] - Color.green(color), 2) +
-				Math.pow(RalSystem.blue[i] - Color.blue(color), 2)
-			);
-			
-			if (differencetmp < difference) {
-				difference = differencetmp;
-				this.index = i;
-			}
-			i++;
-		}
-		
-		setIndex(this.index);
-		setDifference(difference);
+		this.setColor(color);
 	}
 	
 	public String getName() {
 		if (this.index == 0) {
 			return "Unknown";
 		} else {
-			return RalSystem.names[index];
+			return RalSystem.names[this.index];
 		}
 	}
 	
 	public int getCode() {
-		if (index == 0) {
+		if (this.index == 0) {
 			return 0;
 		} else {
-			return RalSystem.code[index];
+			return RalSystem.code[this.index];
 		}
 	}
 	
@@ -84,7 +63,7 @@ public class RalColor {
 	 * @return the index
 	 */
 	public int getIndex() {
-		return index;
+		return this.index;
 	}
 
 	/**
@@ -98,7 +77,38 @@ public class RalColor {
 	 * @return the difference
 	 */
 	public double getDifference() {
-		return difference;
+		return this.difference;
+	}
+
+	/**
+	 * @return the color
+	 */
+	public int getColor() {
+		return this.color;
+	}
+
+	/**
+	 * @param color the color to set
+	 */
+	public void setColor(int color) {
+		this.index = DEFAULT_COLOR_INDEX;
+		this.color = color;
+		this.difference = MAX_COLOR_DIFFERENCE;
+		
+		double differencetmp = 0;
+		
+		for (int i = 0; i < RalSystem.code.length; i++) {
+			// Euclidian distance in 3D color space 
+			differencetmp = Math.sqrt(
+				Math.pow(RalSystem.red[i] - Color.red(color), 2) +
+				Math.pow(RalSystem.green[i] - Color.green(color), 2) +
+				Math.pow(RalSystem.blue[i] - Color.blue(color), 2));
+			
+			if (differencetmp < this.difference) {
+				this.difference = differencetmp;
+				this.index = i;
+			}
+		}
 	}
 	
 }

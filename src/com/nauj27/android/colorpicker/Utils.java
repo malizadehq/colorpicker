@@ -19,6 +19,19 @@ public class Utils {
 	private static final String TAG = "Utils";
 	
 	/**
+	 * Fill hex string with "0" when hexString minor than F.
+	 * @param hexString
+	 * @return
+	 */
+	public static String beautyHexString(String hexString) {
+		if (hexString.length() < 2) {
+			return "0".concat(hexString);
+		} else {
+			return hexString;
+		}
+	}
+	
+	/**
      * Find components of color of the bitmap at x, y. 
      * @param x Distance from left border of the View
      * @param y Distance from top of the View
