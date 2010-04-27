@@ -13,4 +13,7 @@
 <string name="result_color_ral">RAL:</string>
 <string name="result_color_rgb">RGB:</string>
 <string name="result_color_hex">HEX:</string>
+<string name="menu_take_photo_dialog">Mostrar</string>
+
+<string name="about_text">Hola Mundo</string>
 </resources>
