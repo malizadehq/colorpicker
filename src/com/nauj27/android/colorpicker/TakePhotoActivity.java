@@ -6,6 +6,7 @@ package com.nauj27.android.colorpicker;
 import java.io.IOException;
 
 import android.app.Activity;
+import android.app.Dialog;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.graphics.PixelFormat;
@@ -30,8 +31,12 @@ import android.widget.ImageButton;
  */
 public class TakePhotoActivity extends Activity {
 	private static final String TAG = "TakePhotoActivity";
-	private static final int MENU_TAKE_PHOTO_ITEM = Menu.FIRST;
+	
+	private static final int MENU_TAKE_PHOTO_ITEM = 0;
+	private static final int MENU_TAKE_PHOTO_DIALOG = 1;
 	private static final int MENU_TAKE_PHOTO_EXIT = 10; // The last one.
+	
+	private static final int DIALOG_ID = 0;
 	
 	private Camera camera = null;
 	
@@ -161,6 +166,13 @@ public class TakePhotoActivity extends Activity {
     	menuItem = menu.add(groupId, menuItemId, menuItemOrder, menuItemText);
     	menuItem.setIcon(android.R.drawable.ic_menu_camera);
     	
+    	// Button to take picture
+    	menuItemId = MENU_TAKE_PHOTO_DIALOG;
+    	menuItemOrder = MENU_TAKE_PHOTO_DIALOG;
+    	menuItemText = R.string.menu_take_photo_dialog;
+    	menuItem = menu.add(groupId, menuItemId, menuItemOrder, menuItemText);
+    	menuItem.setIcon(android.R.drawable.ic_menu_info_details);
+    	
     	// Button to exit the application
     	menuItemId = MENU_TAKE_PHOTO_EXIT;
     	menuItemOrder = MENU_TAKE_PHOTO_EXIT;
@@ -182,14 +194,38 @@ public class TakePhotoActivity extends Activity {
     	// Search for menu item.
     	switch(menuItem.getItemId()) {
 	    	case(MENU_TAKE_PHOTO_ITEM):
-	    		camera.autoFocus(autoFocusCallback);	    	
-	    		return true;
+	    		camera.autoFocus(autoFocusCallback);
+	    		break;
+	    	case(MENU_TAKE_PHOTO_DIALOG):
+	    		//camera.stopPreview();
+	    		showDialog(DIALOG_ID);
+	    		break;
 	    	case(MENU_TAKE_PHOTO_EXIT):
 	    		finish();
-	    		return true;
+	    		break;
+	    	default:
+	    		return false;
     	}
+    	return true;
+    }
+    
+    @Override
+    /**
+     * Overrides the "oncreatedialog" method for the activity.
+     */
+    protected Dialog onCreateDialog(int id) {
+    	//super.onCreateDialog(id);
     	
-    	// Menu item does not exist.
-    	return false;
+        Dialog dialog = null;
+        switch(id) {
+        case DIALOG_ID:
+        	dialog = new Dialog(this);
+            dialog.setContentView(R.layout.about_dialog);
+            dialog.setTitle("MyTitle"); 
+            break;
+        default:
+            dialog = null;
+        }
+        return dialog;
     }
 }

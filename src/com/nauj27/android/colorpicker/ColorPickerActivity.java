@@ -2,7 +2,6 @@ package com.nauj27.android.colorpicker;
 
 import android.app.Activity;
 import android.app.Dialog;
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.pm.ActivityInfo;
 import android.graphics.Bitmap;
@@ -16,6 +15,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.view.View.OnTouchListener;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.nauj27.android.colorpicker.ral.RalColor;
@@ -32,6 +32,8 @@ public class ColorPickerActivity extends Activity {
 	
 	// Magic numbers :)
 	private static final int DIALOG_RESULT_ID = 0;
+	
+	private RalColor ralColor = null;
 	
 
     /** Called when the activity is first created. */
@@ -83,8 +85,6 @@ public class ColorPickerActivity extends Activity {
 	    	finishActivity(RESULT_CANCELED);
         }
         
-        
-        
         /**
          * Set the listener for touch event into the image view.
          */
@@ -102,13 +102,10 @@ public class ColorPickerActivity extends Activity {
 						Log.d(TAG, "Position: " + x + ", " + y);
 						
 						int color = Utils.findColor(view, x, y);
-						RalColor ralColor = new RalColor(color);
-						
+						ralColor = new RalColor(color);
 						
 						// This is how to show color with dialog
-						// And then:
 						showDialog(DIALOG_RESULT_ID);
-						
 						
 						// This is how to show color with toast
 						/*CharSequence msg = "Color: (" 
@@ -131,16 +128,19 @@ public class ColorPickerActivity extends Activity {
     	
     	switch(id) {
     	case DIALOG_RESULT_ID:
-    		/*
-    		Context mContext = getApplicationContext();
-			dialog = new Dialog(mContext);
-			
+    		dialog = new Dialog(this);
 			dialog.setContentView(R.layout.result_layout);
 			dialog.setTitle("Color elegido");
 			
-			TextView textView = (TextView)dialog.findViewById(R.id.TextViewRal);
-			textView.setText("RAL: ASDFASF");*/
-    		ProgressDialog pdialog = ProgressDialog.show(ColorPickerActivity.this, "", "foh", true);
+			TextView textViewRal = (TextView)dialog.findViewById(R.id.TextViewRal);
+			textViewRal.setText(
+				"RAL: ".concat(Integer.toString(ralColor.getCode(), 10)));
+			
+			//TextView textViewRgb = (TextView)dialog.findViewById(R.id.TextViewRgb);
+			
+			TextView textViewHex = (TextView)dialog.findViewById(R.id.TextViewHex);
+			textViewHex.setText(
+				"HEX: ".concat(Integer.toString(ralColor.getCode(), 10)));
     		break;
     	default:
     		dialog = null;

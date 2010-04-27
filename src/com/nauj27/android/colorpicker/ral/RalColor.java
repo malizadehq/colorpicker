@@ -13,6 +13,8 @@ import android.graphics.Color;
 public class RalColor {
 	/** The RAL index. */
 	private int index = 0;
+	/** The color. */
+	private int color = 0;
 	/** The difference with the RAL more closed. */
 	private double difference = 512;
 	
@@ -26,7 +28,9 @@ public class RalColor {
 	 * @param color the color int to search
 	 */
 	public RalColor(int color) {
-		int index = 0;
+		this.index = 0;
+		this.color = color;
+		
 		int i = 0;
 		double differencetmp = 0;
 		double difference = 512;
@@ -42,17 +46,17 @@ public class RalColor {
 			
 			if (differencetmp < difference) {
 				difference = differencetmp;
-				index = i;
+				this.index = i;
 			}
 			i++;
 		}
 		
-		setIndex(index);
+		setIndex(this.index);
 		setDifference(difference);
 	}
 	
 	public String getName() {
-		if (index == 0) {
+		if (this.index == 0) {
 			return "Unknown";
 		} else {
 			return RalSystem.names[index];
