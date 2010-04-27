@@ -221,7 +221,7 @@ public class TakePhotoActivity extends Activity {
         case DIALOG_ID:
         	dialog = new Dialog(this);
             dialog.setContentView(R.layout.about_dialog);
-            dialog.setTitle("MyTitle"); 
+            dialog.setTitle(R.string.app_name); 
             break;
         default:
             dialog = null;

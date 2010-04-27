@@ -15,18 +15,16 @@ public final class R {
         public static final int icon=0x7f020001;
     }
     public static final class id {
-        public static final int ImageCameraButton=0x7f05000b;
-        public static final int ImageViewColor=0x7f050005;
-        public static final int LinearLayoutColor=0x7f050004;
-        public static final int LinearLayoutData=0x7f050006;
-        public static final int TableLayout01=0x7f050002;
+        public static final int ImageCameraButton=0x7f050009;
+        public static final int ImageViewColor=0x7f050003;
+        public static final int LinearLayoutData=0x7f050004;
+        public static final int LinearLayoutResult=0x7f050002;
         public static final int TextViewAbout=0x7f050000;
-        public static final int TextViewHex=0x7f050009;
-        public static final int TextViewHumanReadable=0x7f050003;
-        public static final int TextViewRal=0x7f050007;
-        public static final int TextViewRgb=0x7f050008;
+        public static final int TextViewHex=0x7f050007;
+        public static final int TextViewRal=0x7f050005;
+        public static final int TextViewRgb=0x7f050006;
         public static final int ivPicture=0x7f050001;
-        public static final int surfaceViewCamera=0x7f05000a;
+        public static final int surfaceViewCamera=0x7f050008;
     }
     public static final class layout {
         public static final int about_dialog=0x7f030000;
