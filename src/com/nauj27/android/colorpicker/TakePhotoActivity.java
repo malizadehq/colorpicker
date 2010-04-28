@@ -17,6 +17,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.View;
@@ -79,12 +80,18 @@ public class TakePhotoActivity extends Activity {
 	 */
 	private View.OnClickListener onClickListener = new View.OnClickListener() {
 		@Override
-		public void onClick(View arg0) {
-			camera.autoFocus(autoFocusCallback);
+		public void onClick(View view) {
+			try {
+				camera.autoFocus(autoFocusCallback);
+			} catch (Exception e) {
+				Log.e(TAG, "Autofocus exception.");
+			}
 		}
 	};
-
 	
+	/**
+	 * Autofocus callback.
+	 */
 	private AutoFocusCallback autoFocusCallback = new AutoFocusCallback() {
 		@Override
 		public void onAutoFocus(boolean arg0, Camera camera) {
