@@ -13,7 +13,7 @@
 <string name="result_color_ral">RAL:</string>
 <string name="result_color_rgb">RGB:</string>
 <string name="result_color_hex">HEX:</string>
-<string name="menu_take_photo_dialog">Mostrar</string>
+<string name="menu_take_photo_about">Ayuda</string>
 
-<string name="about_text">Esta aplicación sirve para ver el color de un elemento de una foto.</string>
+<string name="about_text">Esta aplicación sirve para ver el color de un elemento de una foto.\n\nMuestra el código en sistema RAL y el nombre del color en este sistema, los valores RGB y el código hexadecimal.\n\n-nauj27.com</string>
 </resources>

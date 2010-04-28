@@ -6,7 +6,9 @@ package com.nauj27.android.colorpicker;
 import java.io.IOException;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.graphics.PixelFormat;
@@ -17,7 +19,6 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.View;
@@ -34,10 +35,10 @@ public class TakePhotoActivity extends Activity {
 	private static final String TAG = "TakePhotoActivity";
 	
 	private static final int MENU_TAKE_PHOTO_ITEM = 0;
-	private static final int MENU_TAKE_PHOTO_DIALOG = 1;
-	private static final int MENU_TAKE_PHOTO_EXIT = 10; // The last one.
+	private static final int MENU_ABOUT_ITEM = 1;
+	private static final int MENU_EXIT_ITEM = 10; // The last one.
 	
-	private static final int DIALOG_ID = 0;
+	private static final int DIALOG_ABOUT_ID = 0;
 	
 	private Camera camera = null;
 	
@@ -174,15 +175,15 @@ public class TakePhotoActivity extends Activity {
     	menuItem.setIcon(android.R.drawable.ic_menu_camera);
     	
     	// Button to take picture
-    	menuItemId = MENU_TAKE_PHOTO_DIALOG;
-    	menuItemOrder = MENU_TAKE_PHOTO_DIALOG;
-    	menuItemText = R.string.menu_take_photo_dialog;
+    	menuItemId = MENU_ABOUT_ITEM;
+    	menuItemOrder = MENU_ABOUT_ITEM;
+    	menuItemText = R.string.menu_take_photo_about;
     	menuItem = menu.add(groupId, menuItemId, menuItemOrder, menuItemText);
     	menuItem.setIcon(android.R.drawable.ic_menu_info_details);
     	
     	// Button to exit the application
-    	menuItemId = MENU_TAKE_PHOTO_EXIT;
-    	menuItemOrder = MENU_TAKE_PHOTO_EXIT;
+    	menuItemId = MENU_EXIT_ITEM;
+    	menuItemOrder = MENU_EXIT_ITEM;
     	menuItemText = R.string.menu_take_photo_exit;
     	menuItem = menu.add(groupId, menuItemId, menuItemOrder, menuItemText);
     	menuItem.setIcon(android.R.drawable.ic_menu_close_clear_cancel);
@@ -203,11 +204,10 @@ public class TakePhotoActivity extends Activity {
 	    	case(MENU_TAKE_PHOTO_ITEM):
 	    		camera.autoFocus(autoFocusCallback);
 	    		break;
-	    	case(MENU_TAKE_PHOTO_DIALOG):
-	    		//camera.stopPreview();
-	    		showDialog(DIALOG_ID);
+	    	case(MENU_ABOUT_ITEM):
+	    		showDialog(DIALOG_ABOUT_ID);
 	    		break;
-	    	case(MENU_TAKE_PHOTO_EXIT):
+	    	case(MENU_EXIT_ITEM):
 	    		finish();
 	    		break;
 	    	default:
@@ -221,18 +221,18 @@ public class TakePhotoActivity extends Activity {
      * Overrides the "oncreatedialog" method for the activity.
      */
     protected Dialog onCreateDialog(int id) {
-    	//super.onCreateDialog(id);
+    	AlertDialog alertDialog;
     	
-        Dialog dialog = null;
         switch(id) {
-        case DIALOG_ID:
-        	dialog = new Dialog(this);
-            dialog.setContentView(R.layout.about_dialog);
-            dialog.setTitle(R.string.app_name); 
+        case DIALOG_ABOUT_ID:
+        	AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        	builder.setTitle(R.string.app_name)
+        		.setMessage(R.string.about_text);
+        	alertDialog = builder.create();
             break;
         default:
-            dialog = null;
+            alertDialog = null;
         }
-        return dialog;
+        return alertDialog;
     }
 }
