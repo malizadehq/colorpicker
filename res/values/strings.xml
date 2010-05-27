@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="make_photo">Hacer foto</string>
+    <string name="make_photo">Take photo</string>
     
     <string name="app_name">Color Picker</string>
-<string name="menu_take_photo_item">Hacer una foto</string>
-<string name="help_message">Haga una foto usando la tecla de menú</string>
-<string name="take_photo_help">Toca la pantalla para enfocar y hacer una foto</string>
-<string name="color_picker_photo_help">Toca un punto de la imagen para ver el color</string>
+<string name="menu_take_photo_item">Take a photo</string>
+<string name="help_message">Take a photo with the menu key</string>
+<string name="take_photo_help">Touch screen to focus and take a photo</string>
+<string name="color_picker_photo_help">Touch the screen to pick the color</string>
 
-<string name="menu_take_photo_exit">Salir</string>
-<string name="result_color_name">Nombre del color</string>
+<string name="menu_take_photo_exit">Exit</string>
+<string name="result_color_name">Color name</string>
 <string name="result_color_ral">RAL:</string>
 <string name="result_color_rgb">RGB:</string>
 <string name="result_color_hex">HEX:</string>
-<string name="menu_take_photo_about">Ayuda</string>
+<string name="menu_take_photo_about">Help</string>
 
-<string name="about_text">Esta aplicación sirve para ver el color de un elemento de una foto.\n\nMuestra el código en sistema RAL y el nombre del color en este sistema, los valores RGB y el código hexadecimal.\n\n-nauj27.com</string>
+<string name="about_text">This app allow to pick the color of one point of the photo.\n\nThe application detects and shows the RAL code, the color name, the RGB values and the hexadecimal code.\n\nandroid@nauj27.com</string>
 </resources>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="make_photo">Hacer foto</string>
+    
+<string name="menu_take_photo_item">Hacer una foto</string>
+<string name="help_message">Haz una foto usando la tecla menu</string>
+<string name="take_photo_help">Toca la pantalla para enfocar y hacer una foto</string>
+<string name="color_picker_photo_help">Toca la pantalla para seleccionar un color</string>
+
+<string name="menu_take_photo_exit">Salir</string>
+<string name="result_color_name">Nombre del color</string>
+<string name="menu_take_photo_about">Ayuda</string>
+
+<string name="about_text">Esta aplicación permite ver el color de un elemento de una foto.\n\nLa aplicación detecta y muestra el código RAL, el nombre del color, el código RGB y el código hexadecimal.\n\nandroid@nauj27.com</string>
+
+<string-array name="color_names">
+    <item>Rojo</item>
+    <item>Verde</item>
+    <item>Azul</item>
+</string-array>
+
+</resources>

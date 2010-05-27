@@ -3,6 +3,8 @@
  */
 package com.nauj27.android.colorpicker.ral;
 
+import com.nauj27.android.colorpicker.R;
+
 import android.graphics.Color;
 
 
@@ -39,6 +41,7 @@ public class RalColor {
 			return "Unknown";
 		} else {
 			return RalSystem.names[this.index];
+			// TODO: String[] colorNames = getStringArray(R.array.color_names);
 		}
 	}
 	
