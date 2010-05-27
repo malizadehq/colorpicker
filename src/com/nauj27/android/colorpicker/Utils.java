@@ -50,6 +50,7 @@ public class Utils {
     	int xImage = 0;
     	int yImage = 0;
     	
+    	// Get the bitmap from the view.
     	ImageView imageView = (ImageView)view;
     	Log.d(TAG, "View size: " + imageView.getWidth() + "x" + imageView.getHeight());
     	BitmapDrawable bitmapDrawable = (BitmapDrawable)imageView.getDrawable();
@@ -61,7 +62,7 @@ public class Utils {
     	yImage = (int)(y * ((double)imageBitmap.getHeight() / (double)imageView.getHeight()));
         Log.d(TAG, "Transformation: " + x + "x" + y + " => " + xImage + "x" + yImage);
     	
-        // Average of pixels around the touched one.
+        // Average of pixels color around the center of the touch.
     	for (int i = xImage - offset; i <= xImage + offset; i++) {
     		for (int j = yImage - offset; j <= yImage + offset; j++) {
     			try {
@@ -70,7 +71,7 @@ public class Utils {
         			green += Color.green(color);
         			blue += Color.blue(color);
         			pixelsNumber += 1;
-        			Log.d(TAG, "Color del punto " + i + " :(" + 
+        			Log.d(TAG, "Dot color " + i + " :(" + 
         					Color.red(color) + ", " + Color.green(color) + 
         					", " + Color.blue(color) + ")");
         		} catch(Exception e) {
