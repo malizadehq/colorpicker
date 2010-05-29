@@ -6,7 +6,7 @@ package com.nauj27.android.colorpicker;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
-import android.util.Log;
+//import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 
@@ -16,7 +16,7 @@ import android.widget.ImageView;
  */
 public class Utils {
 	// Private constants.
-	private static final String TAG = "Utils";
+	//private static final String TAG = "Utils";
 	
 	/**
 	 * Fill hex string with "0" when hexString minor than F.
@@ -52,15 +52,15 @@ public class Utils {
     	
     	// Get the bitmap from the view.
     	ImageView imageView = (ImageView)view;
-    	Log.d(TAG, "View size: " + imageView.getWidth() + "x" + imageView.getHeight());
+    	//Log.d(TAG, "View size: " + imageView.getWidth() + "x" + imageView.getHeight());
     	BitmapDrawable bitmapDrawable = (BitmapDrawable)imageView.getDrawable();
     	Bitmap imageBitmap = bitmapDrawable.getBitmap();
-    	Log.d(TAG, "Bitmap size: " + imageBitmap.getWidth() + "x" + imageBitmap.getHeight());
+    	//Log.d(TAG, "Bitmap size: " + imageBitmap.getWidth() + "x" + imageBitmap.getHeight());
 
         // Calculate the target in the bitmap.
     	xImage = (int)(x * ((double)imageBitmap.getWidth() / (double)imageView.getWidth()));
     	yImage = (int)(y * ((double)imageBitmap.getHeight() / (double)imageView.getHeight()));
-        Log.d(TAG, "Transformation: " + x + "x" + y + " => " + xImage + "x" + yImage);
+        //Log.d(TAG, "Transformation: " + x + "x" + y + " => " + xImage + "x" + yImage);
     	
         // Average of pixels color around the center of the touch.
     	for (int i = xImage - offset; i <= xImage + offset; i++) {
@@ -71,11 +71,11 @@ public class Utils {
         			green += Color.green(color);
         			blue += Color.blue(color);
         			pixelsNumber += 1;
-        			Log.d(TAG, "Dot color " + i + " :(" + 
-        					Color.red(color) + ", " + Color.green(color) + 
-        					", " + Color.blue(color) + ")");
+        			//Log.d(TAG, "Dot color " + i + " :(" + 
+        			//		Color.red(color) + ", " + Color.green(color) + 
+        			//		", " + Color.blue(color) + ")");
         		} catch(Exception e) {
-        			Log.w(TAG, "Error picking color!");
+        			//Log.w(TAG, "Error picking color!");
         		}	
     		}
     	}
@@ -83,8 +83,8 @@ public class Utils {
     	green = green / pixelsNumber;
     	blue = blue / pixelsNumber;
     	
-    	CharSequence msg = "Color: (" + red + ", " + green + ", " + blue + ")"; 
-    	Log.d(TAG, (String)msg);
+    	//CharSequence msg = "Color: (" + red + ", " + green + ", " + blue + ")"; 
+    	//Log.d(TAG, (String)msg);
     	
     	return Color.rgb(red, green, blue); 
     	
