@@ -41,7 +41,7 @@ public class RalColor {
 			return "Unknown";
 		} else {
 			return RalSystem.names[this.index];
-			// TODO: String[] colorNames = getStringArray(R.array.color_names);
+			//String[] colorNames = getStringArray(R.array.color_names);
 		}
 	}
 	
