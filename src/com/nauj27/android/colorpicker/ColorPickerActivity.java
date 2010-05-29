@@ -1,5 +1,7 @@
 package com.nauj27.android.colorpicker;
 
+import com.nauj27.android.colorpicker.ral.RalColor;
+
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
@@ -19,7 +21,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.nauj27.android.colorpicker.ral.RalColor;
 
 /**
  * This activity receive a picture and show touched color.
@@ -36,7 +37,6 @@ public class ColorPickerActivity extends Activity {
 	
 	private RalColor ralColor = null;
 	
-
     /** Called when the activity is first created. */
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -146,11 +146,15 @@ public class ColorPickerActivity extends Activity {
     	
     	switch(id) {
     	case DIALOG_RESULT_ID:
+    		int index = 0;
     		int red = Color.red(ralColor.getColor());
     		int green = Color.green(ralColor.getColor());
     		int blue = Color.blue(ralColor.getColor());
-    		
-			dialog.setTitle(ralColor.getName());
+			
+    		// Set the color name from localized resource
+			index = ralColor.getIndex();
+			String[] colorNames = getResources().getStringArray(R.array.color_names);
+			dialog.setTitle(colorNames[index]);
 			
 			ImageView imageViewColor = (ImageView)dialog.findViewById(R.id.ImageViewColor);
 			imageViewColor.setBackgroundColor(ralColor.getColor());
