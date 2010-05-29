@@ -15,7 +15,7 @@ import android.hardware.Camera;
 import android.hardware.Camera.AutoFocusCallback;
 import android.hardware.Camera.PictureCallback;
 import android.os.Bundle;
-import android.util.Log;
+//import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.SurfaceHolder;
@@ -31,7 +31,7 @@ import android.widget.ImageButton;
  * Extends Activity
  */
 public class TakePhotoActivity extends Activity {
-	private static final String TAG = "TakePhotoActivity";
+	//private static final String TAG = "TakePhotoActivity";
 	
 	private static final int MENU_TAKE_PHOTO_ITEM = 0;
 	private static final int MENU_ABOUT_ITEM = 1;
@@ -84,7 +84,7 @@ public class TakePhotoActivity extends Activity {
 			try {
 				camera.autoFocus(autoFocusCallback);
 			} catch (Exception e) {
-				Log.e(TAG, "Autofocus exception.");
+				//Log.e(TAG, "Autofocus exception.");
 			}
 		}
 	};
@@ -146,7 +146,7 @@ public class TakePhotoActivity extends Activity {
 			try {
 				camera.setPreviewDisplay(surfaceHolder);
 			} catch (IOException ioException) {
-				Log.e(TAG, "Error setting preview display");
+				//Log.e(TAG, "Error setting preview display");
 				camera.release();
 				camera = null;
 			}

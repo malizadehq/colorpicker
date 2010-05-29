@@ -11,7 +11,7 @@ import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.PixelFormat;
 import android.os.Bundle;
-import android.util.Log;
+//import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.Window;
@@ -29,7 +29,7 @@ import android.widget.Toast;
  */
 public class ColorPickerActivity extends Activity {
 	// Private constants.
-	private static final String TAG = "ColorPickerActivity";
+	//private static final String TAG = "ColorPickerActivity";
 	private static final String JPEG_PICTURE = "JPEG_PICTURE";
 	
 	// Magic numbers :)
@@ -92,7 +92,7 @@ public class ColorPickerActivity extends Activity {
         imageView.setOnTouchListener(new OnTouchListener() {
 			@Override
 			public boolean onTouch(View view, MotionEvent motionEvent) {
-				Log.d(TAG, "Screen touched");
+				//Log.d(TAG, "Screen touched");
 				
 				int action = motionEvent.getAction();
 				
@@ -100,7 +100,7 @@ public class ColorPickerActivity extends Activity {
 					case(MotionEvent.ACTION_DOWN):
 						int x = (int)motionEvent.getX();
 						int y = (int)motionEvent.getY();
-						Log.d(TAG, "Position: " + x + ", " + y);
+						//Log.d(TAG, "Position: " + x + ", " + y);
 						
 						int color = Utils.findColor(view, x, y);
 						if (ralColor == null) { 
@@ -140,7 +140,7 @@ public class ColorPickerActivity extends Activity {
     	// I really don't know if Android calls onPrepareDialog when
     	// dialog is null.
     	if (dialog == null) {
-    		Log.w(TAG, "Error preparing result dialog.");
+    		//Log.w(TAG, "Error preparing result dialog.");
     		return;
     	}
     	
