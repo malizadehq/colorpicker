@@ -42,10 +42,10 @@ public class TakePhotoActivity extends Activity {
 	private Camera camera = null;
 	
 	// FIXME: size is not standard, but only can use getValid in 2.1 :(
-	//private static final int PICTURE_SIZE_WIDTH = 512; //352;
-	//private static final int PICTURE_SIZE_HEIGHT = 384; //288;
-	private static final int PICTURE_SIZE_WIDTH = 640;
-	private static final int PICTURE_SIZE_HEIGHT = 480;
+	private static final int PICTURE_SIZE_WIDTH = 512;
+	private static final int PICTURE_SIZE_HEIGHT = 384;
+	private static final int PICTURE_SIZE_WIDTH_MOTOROLA = 640;
+	private static final int PICTURE_SIZE_HEIGHT_MOTOROLA = 480;
 	private static final int PREVIEW_SIZE_WIDTH = 352;
 	private static final int PREVIEW_SIZE_HEIGHT = 288;
 	
@@ -133,7 +133,14 @@ public class TakePhotoActivity extends Activity {
 			
 			Camera.Parameters cameraParameters = camera.getParameters();
 			
-			cameraParameters.setPictureSize(PICTURE_SIZE_WIDTH, PICTURE_SIZE_HEIGHT);
+			if (Utils.isMotorola(android.os.Build.MODEL)) {
+				cameraParameters.setPictureSize(
+					PICTURE_SIZE_WIDTH_MOTOROLA, PICTURE_SIZE_HEIGHT_MOTOROLA);
+			} else {
+				cameraParameters.setPictureSize(
+					PICTURE_SIZE_WIDTH, PICTURE_SIZE_HEIGHT);
+			}
+			
 			cameraParameters.setPreviewSize(PREVIEW_SIZE_WIDTH, PREVIEW_SIZE_HEIGHT);
 			cameraParameters.setPictureFormat(PixelFormat.JPEG);
 			

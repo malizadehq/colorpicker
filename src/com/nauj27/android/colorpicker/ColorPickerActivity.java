@@ -1,7 +1,5 @@
 package com.nauj27.android.colorpicker;
 
-import com.nauj27.android.colorpicker.ral.RalColor;
-
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
@@ -9,9 +7,9 @@ import android.content.pm.ActivityInfo;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
+import android.graphics.Matrix;
 import android.graphics.PixelFormat;
 import android.os.Bundle;
-//import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.Window;
@@ -20,6 +18,8 @@ import android.view.View.OnTouchListener;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.nauj27.android.colorpicker.ral.RalColor;
 
 
 /**
@@ -59,6 +59,7 @@ public class ColorPickerActivity extends Activity {
         // Get context and ImageView view for later usage
         Context context = getApplicationContext();
         ImageView imageView = (ImageView)findViewById(R.id.ivPicture);
+        imageView.setScaleType(ImageView.ScaleType.FIT_XY);
         
         // Get JPEG image from extras from the Intent that launch this activity
         Bundle bundleExtras = getIntent().getExtras();
@@ -72,15 +73,27 @@ public class ColorPickerActivity extends Activity {
 			Bitmap bitmap = BitmapFactory
 				.decodeByteArray(jpegPicture, offset, length);
 			
-			// Set the bitmap as background image of the image view
-	        imageView.setScaleType(ImageView.ScaleType.FIT_XY);
-			imageView.setImageBitmap(bitmap);
+			// Rotate the image for Motorola phones
+			if (Utils.isMotorola(android.os.Build.MODEL)) {
+				Matrix matrix = new Matrix();
+				matrix.postRotate(-90);
+				
+				// Recreate the bitmap
+				Bitmap rotatedBitmap = Bitmap.createBitmap(
+					bitmap, 0, 0, bitmap.getWidth(), bitmap.getHeight(), 
+					matrix, true);
+				
+				imageView.setImageBitmap(rotatedBitmap);
+			} else {
+				imageView.setImageBitmap(bitmap);
+			}
 			
 			// Show a bit of help to the user :)
 	    	CharSequence charSequence = getString(R.string.color_picker_photo_help);
 	    	int duration = Toast.LENGTH_SHORT;
 	    	Toast toast = Toast.makeText(context, charSequence, duration);
 	    	toast.show();
+
         } else {
         	// JPEG data is not in the bundle extra received
 	    	finishActivity(RESULT_CANCELED);

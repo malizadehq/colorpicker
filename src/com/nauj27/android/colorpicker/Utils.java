@@ -87,7 +87,22 @@ public class Utils {
     	//Log.d(TAG, (String)msg);
     	
     	return Color.rgb(red, green, blue); 
-    	
 	}
-
+	
+	/**
+	 * Returns if the model is some from Motorola manufacturer.
+	 * @param model The current model
+	 * @return A boolean value indicating if is from Motorola
+	 */
+	public static boolean isMotorola(String model) {
+		String[] models = {"MB501", "Milestone", "MB300", "MB200"};
+		
+		for (int i = 0; i < models.length; i++) {
+			if (model.compareToIgnoreCase(models[i]) == 0) {
+				return true;
+			}
+		}
+		
+		return false;
+	}
 }
