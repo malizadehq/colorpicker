@@ -34,19 +34,22 @@ public class RalColor {
 		this.setColor(color);
 	}
 	
-	public String getName() {
-		if (this.index == 0) {
-			return "Unknown";
-		} else {
-			return RalSystem.names[this.index];
-		}
-	}
-	
 	public int getCode() {
 		if (this.index == 0) {
 			return 0;
 		} else {
 			return RalSystem.code[this.index];
+		}
+	}
+	
+	/**
+	 * @return the pantone equivalent more similar
+	 */
+	public String getPantone() {
+		if (this.index == 0) {
+			return "XXX";
+		} else {
+			return RalSystem.pantone[this.index];
 		}
 	}
 	
