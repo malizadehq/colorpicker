@@ -11,7 +11,7 @@
     android:background="@drawable/button_camera" 
     android:id="@+id/ImageCameraButton" 
     android:layout_y="120dip" 
-    android:layout_x="370dip" 
+    android:layout_x="400dip" 
     android:clickable="true">
 </ImageButton>
 
