@@ -33,6 +33,31 @@ public class RalSystem {
 		9018, 9022,	9023
 	};
 	
+	public static String[] pantone = {
+		"4525", "728", "465", "137", "124", "131", "144", "144", "723", "612",
+		"468", "467", "726", "604", "150", "123", "479", "4505", "1235", "1235",
+		"722", "XXX", "1255", "137", "124", "1375", "715", "715", "715", "715",
+		"152", "173", "485", "164", "1655", "XXX", "XXX", "1585", "172", "1665",
+		"1585", "178", "XXX", "484", "484", "187", "704", "491", "490", "4975",
+		"181", "1815", "729", "484", "709", "197", "180", "1787", "710", "485",
+		"178", "XXX", "XXX", "186", "XXX", "1805", "XXX", "XXX", "682", "201",
+		"205", "505", "667", "465", "5185", "689", "XXX", "XXX", "XXX", "XXX",
+		"533", "302", "288", "540", "Black 6", "294", "5405", "433", "3025", "541",
+		"289", "307", "5255", "646", "3015", "2945", "3145", "301", "3155", "3155",
+		"276", "5405", "5483", "XXX", "XXX", "568", "349", "349", "448", "316",
+		"3308", "Black", "5605", "Black 4", "5467", "349", "625", "5467", "417", "Black",
+		"426", "342", "364", "363", "557", "5535", "624", "Black 2", "348", "371",
+		"2735", "631", "3305", "349", "3288", "569", "624", "XXX", "XXX", "XXX",
+		"XXX", "424", "444", "Warm Gray 10", "417", "423", "431", "Warm Gray 11", "463", "405",
+		"5477", "5477", "445", "449", "446", "433", "419", "465", "424", "432",
+		"Black 7", "416", "445", "Warm Gray 5", "5425", "Warm Gray 8", "421", "Cool Gray 8", "424", "429",
+		"431", "423", "430", "446", "XXX", "XXX", "XXX", "XXX", "XXX", "464",
+		"471", "478", "4635", "4635", "478", "463", "477", "175", "4695", "175",
+		"4695", "497", "412", "Black 6", "471", "4705", "4705", "4695", "XXX", "Warm Gray 1",
+		"420", "705", "Black 6", "Black", "XXX", "XXX", "Cool Gray 1", "Black 6", "705", "Black",
+		"428", "XXX", "XXX"
+	};
+	
 	public static int[] red = {
 		190, 194, 198, 229, 205, 169, 228, 220, 138, 199, 
 		234, 225, 230, 237, 245, 248, 158, 153, 243, 250, 
@@ -154,62 +179,4 @@ public class RalSystem {
 		0xD7D7D7, 0x9C9C9C, 0x828282
 	};
 	
-	// This should not be used anymore. The name is read from localized resource
-	// now.
-	public static String[] names = {
-		"Beige verdoso", "Beige", "Amarillo arena", "Amarillo señales", 
-		"Amarillo oro", "Amarillo miel", "Amarillo maiz", "Amarillo narciso",
-		"Beige pardo", "Amarillo limón", "Blanco perla", "Marfil",
-		"Marfil claro", "Amarillo azufre", "Amarillo azafrán",
-		"Amarillo de zinc", "Beige agrisado", "Amarillo oliva",
-		"Amarillo colza", "Amarillo tráfico", "Amarillo ocre",
-		"Amarillo brillante", "Amarillo curry", "Amarillo melón",
-		"Amarillo retama", "Amarillo dalia", "Amarillo pastel",
-		"Beige perlado", "Oro perlado", "Amarillo sol", "Amarillo naranja",
-		"Rojo anaranjado", "Naranja sanguineo", "Naranja pálido",
-		"Naranja puro", "Naranja brillante", "Naranja claro brillante",
-		"Rojo claro anaranjado", "Naranja tráfico", "Naranja señales",
-		"Naranja intenso", "Naranja salmón", "Naranja perlado", "Rojo vivo",
-		"Rojo señales", "Rojo carmin", "Rojo rubí", "Rojo purpura",
-		"Rojo vino", "Rojo negruzco", "Rojo óxido", "Rojo pardo",
-		"Rojo beige", "Rojo tomate", "Rojo viejo", "Rosa claro",
-		"Rojo coral", "Rosa", "Rojo fresa", "Rojo tráfico", "Rojo salmón",
-		"Rojo brillante", "Rojo claro brillante", "Rojo frambuesa",
-		"Rojo puro", "Rojo oriente", "Rojo rubí perlado", "Rosa perlado",
-		"Rojo lila", "Rojo violeta", "Violeta érica", "Burdeos",
-		"Lila azulado", "Púrpurá tráfico", "Violeta púrpura", "Violeta pastel",
-		"Magenta tele", "Violeta perlado", "Morado perlado", "Azul violeta",
-		"Azul verdoso", "Azul ultramar", "Azul zafiro", "Azul negruzco",
-		"Azul señales", "Azul brillante", "Azul grisáceo", "Azul azur",
-		"Azul genciana", "Azul acero", "Azul luminoso", "Azul cobalto",
-		"Azul olombino", "Azul celeste", "Azul tráfico", "Azul turquesa",
-		"Azul capri", "Azul oceano", "Azul agua", "Azul noche", "Azul lejanía",
-		"Azul pastel", "Gencian perlado", "Azul noche perlado", "Verde patina",
-		"Verde esmeralda", "Verde hoja", "Verde oliva", "Verde azulado",
-		"Verde musgo", "Oliva grisáceo", "Verde botella", "Verde parduzco",
-		"Verde abeto", "Verde hierba", "Verde reseda", "Verde negruzco",
-		"Verde caña", "Amarillo oliva", "Oliva negruzco", "Verde turquesa",
-		"Verde mayo", "Verde amarillento", "Verde lanquecino", "Verde cromo",
-		"Verde pálido", "Oliva parduzco", "Verde tráfico", "Verde helecho",
-		"Verde opalo", "Verde luminoso", "Verde pino", "Verde menta",
-		"Verde señales", "Turquesa menta", "Turquesa pastel", "Verde perlado",
-		"Verde ópalo perlado", "Gris ardilla", "Gris plata", "Gris oliva",
-		"Gris musgo", "Gris señales", "Gris ratón", "Gris beige", "Gris caqui",
-		"Gris verdoso", "Gris lona", "Gris hierro", "Gris basalto",
-		"Gris parduzco", "Gris pizarra", "Gris antracita", "Gris negruzco",
-		"Gris sombra", "Gris hormigón", "Gris grafita", "Gris granito",
-		"Gris piedra", "Gris azulado", "Gris guijarro", "Gris cemento",
-		"Gris amarillento", "Gris luminoso", "Gris platino", "Gris polvo",
-		"Gris ágata", "Gris cuarzo", "Gris ventana", "Gris tráfico A",
-		"Gris tráfico B", "Gris seda", "Gris tele 1", "Gris tele 2",
-		"Gris tele 4", "Gris musgo perlado", "Pardo verdoso", "Pardo ocre",
-		"Marrón señales", "Pardo arcilla", "Pardo cobre", "Pardo corzo",
-		"Pardo oliva", "Pardo nuez", "Pardo rojo", "Sepia", "Castaño",
-		"Caoba", "Chocolate", "Pardo grisáceo", "Pardo negruzco",
-		"Pardo anaranjado", "Pardo beige", "Pardo pálido", "Marrón tierra",
-		"Cobre perlado", "Blanco crema", "Blanco grisáceo", "Blanco señales",
-		"Negro señales", "Negro intenso", "Aluminio blanco", "Aluminio gris",
-		"Blanco puro", "Negro grafito", "Blanco tráfico", "Negro tráfico",
-		"Blanco papiro", "Gris claro perlado", "Gris oscuro perlado" 
-	};
 }

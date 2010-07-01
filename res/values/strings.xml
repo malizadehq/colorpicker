@@ -11,6 +11,7 @@
 <string name="menu_take_photo_exit">Exit</string>
 <string name="result_color_name">Color name</string>
 <string name="result_color_ral">RAL:</string>
+<string name="result_color_pantone">Pantone:</string>
 <string name="result_color_rgb">RGB:</string>
 <string name="result_color_hex">HEX:</string>
 <string name="menu_take_photo_about">Help</string>
