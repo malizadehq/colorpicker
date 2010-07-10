@@ -149,8 +149,15 @@ public class TakePhotoActivity extends Activity {
 		}
 
 		@Override
-		public void surfaceCreated(SurfaceHolder surfaceHolder) {		
-			camera = Camera.open();
+		public void surfaceCreated(SurfaceHolder surfaceHolder) {
+			try {
+				camera = Camera.open();
+			} catch (RuntimeException rtException) {
+				if (camera != null) {
+					camera.release();
+					camera = null;
+				}
+			}
 			
 			try {
 				camera.setPreviewDisplay(surfaceHolder);
