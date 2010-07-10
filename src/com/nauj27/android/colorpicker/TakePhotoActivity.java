@@ -10,12 +10,12 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
+import android.content.res.Configuration;
 import android.graphics.PixelFormat;
 import android.hardware.Camera;
 import android.hardware.Camera.AutoFocusCallback;
 import android.hardware.Camera.PictureCallback;
 import android.os.Bundle;
-//import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.SurfaceHolder;
@@ -227,6 +227,7 @@ public class TakePhotoActivity extends Activity {
     @Override
     /**
      * Overrides the "oncreatedialog" method for the activity.
+     * Create and return the about dialog.
      */
     protected Dialog onCreateDialog(int id) {
     	AlertDialog alertDialog;
@@ -242,5 +243,10 @@ public class TakePhotoActivity extends Activity {
             alertDialog = null;
         }
         return alertDialog;
+    }
+    
+    @Override 
+    public void onConfigurationChanged(Configuration newConfig) {
+    	super.onConfigurationChanged(newConfig);
     }
 }
