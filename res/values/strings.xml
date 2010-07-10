@@ -16,7 +16,7 @@
 <string name="result_color_hex">HEX:</string>
 <string name="menu_take_photo_about">Help</string>
 
-<string name="about_text">This app allow to pick the color of one point of the picture.\n\nThe application detects and shows the RAL code, the color name, the RGB values and the hexadecimal code.\n\nandroid@nauj27.com</string>
+<string name="about_text">This app allow to pick the color of one point of the picture.\n\nThe application detects and shows the Pantone and RAL code, the color name, the RGB values and the hexadecimal code.\n\nandroid@nauj27.com</string>
 
 <string-array name="color_names">
 <item>Green beige</item>
