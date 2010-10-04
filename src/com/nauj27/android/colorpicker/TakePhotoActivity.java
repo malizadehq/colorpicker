@@ -159,8 +159,10 @@ public class TakePhotoActivity extends Activity {
 			cameraParameters.setPreviewSize(PREVIEW_SIZE_WIDTH, PREVIEW_SIZE_HEIGHT);
 			cameraParameters.setPictureFormat(PixelFormat.JPEG);
 			
-			camera.setParameters(cameraParameters);
-			camera.startPreview();
+			if (camera != null) {
+				camera.setParameters(cameraParameters);
+				camera.startPreview();
+			}
 		}
 
 		@Override
@@ -178,8 +180,10 @@ public class TakePhotoActivity extends Activity {
 				camera.setPreviewDisplay(surfaceHolder);
 			} catch (IOException ioException) {
 				//Log.e(TAG, "Error setting preview display");
-				camera.release();
-				camera = null;
+				if (camera != null) {
+					camera.release();
+					camera = null;
+				}
 			}
 		}
 	};
