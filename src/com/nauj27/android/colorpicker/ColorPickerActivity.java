@@ -186,7 +186,14 @@ public class ColorPickerActivity extends Activity {
     		// Set the color name from localized resource
 			index = ralColor.getIndex();
 			String[] colorNames = getResources().getStringArray(R.array.color_names);
-			dialog.setTitle(colorNames[index]);
+			try {
+				dialog.setTitle(colorNames[index]);
+			} catch (ArrayIndexOutOfBoundsException e) {
+				// FIXME: something was wrong with indexes. Maybe there is one
+				// more color than color names :-?
+				// Maybe the user can see odd color names!! Please test!!
+				dialog.setTitle(colorNames[colorNames.length-1]);
+			}
 			
 			ImageView imageViewColor = (ImageView)dialog.findViewById(R.id.ImageViewColor);
 			imageViewColor.setBackgroundColor(ralColor.getColor());
