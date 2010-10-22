@@ -9,12 +9,9 @@
 
 <string name="menu_take_photo_exit">Schließen</string>
 <string name="result_color_name">Farbname</string>
-<string name="result_color_ral">RAL:</string>
-<string name="result_color_rgb">RGB:</string>
-<string name="result_color_hex">HEX:</string>
 <string name="menu_take_photo_about">Hilfe</string>
 
-<string name="about_text">Diese App ermöglichen, um die Farbe eines Punktes des Fotos auswählen.\n\nDie Anwendung erkennt und zeigt die Pantone-Code und RAL-Code, den Namen der Farbe, die RGB-Werte und der Hexadezimal-Code.\n\nandroid@nauj27.com</string>
+<string name="about_text">Diese App ermöglichen, um die Farbe eines Punktes des Fotos auswählen.\n\nDie Anwendung erkennt und zeigt die RAL-Code, den Namen der Farbe, die RGB-Werte und der Hexadezimal-Code.\n\nandroid@nauj27.com</string>
 
 
 <string-array name="color_names">

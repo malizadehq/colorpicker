@@ -57,17 +57,6 @@ public class RalColor {
 		}
 	}
 	
-	/**
-	 * @return the pantone equivalent more similar
-	 */
-	public String getPantone() {
-		if (this.index == 0) {
-			return "XXX";
-		} else {
-			return RalSystem.pantone[this.index];
-		}
-	}
-	
 	// Getters and setters
 	
 	/**

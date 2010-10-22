@@ -11,7 +11,7 @@
 <string name="result_color_name">Nombre del color</string>
 <string name="menu_take_photo_about">Ayuda</string>
 
-<string name="about_text">Esta aplicación permite ver el color de un elemento de una foto.\n\nLa aplicación detecta y muestra el código Pantone y RAL, el nombre del color, el código RGB y el código hexadecimal.\n\nandroid@nauj27.com</string>
+<string name="about_text">Esta aplicación permite ver el color de un elemento de una foto.\n\nLa aplicación detecta y muestra el código RAL, el nombre del color, el código RGB y el código hexadecimal.\n\nandroid@nauj27.com</string>
 
 <string-array name="color_names">
 <item>Beige verdoso</item>

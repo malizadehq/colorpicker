@@ -10,10 +10,6 @@
 
 <string name="menu_take_photo_exit">結束</string>
 <string name="result_color_name">色彩名稱</string>
-<string name="result_color_ral">Ral:</string>
-<string name="result_color_pantone">Pantone:</string>
-<string name="result_color_rgb">RGB:</string>
-<string name="result_color_hex">HEX:</string>
 <string name="menu_take_photo_about">說明</string>
 
 <string name="about_text">這個程式允許選擇圖片一個點的色彩。\n\n套用程式偵測並顯示 Ral 國際程式碼, 色彩名稱, RGB 值和HEX 程式碼。\n\nandroid@nauj27.com</string>
