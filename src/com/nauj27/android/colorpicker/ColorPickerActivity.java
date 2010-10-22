@@ -202,10 +202,6 @@ public class ColorPickerActivity extends Activity {
 			textViewRal.setText(
 				"RAL: ".concat(Integer.toString(ralColor.getCode(), 10)));
 			
-			TextView textViewPantone = (TextView)dialog.findViewById(R.id.TextViewPantone);
-			textViewPantone.setText(
-				"Pantone: ".concat(ralColor.getPantone()));
-			
 			TextView textViewRgb = (TextView)dialog.findViewById(R.id.TextViewRgb);
 			textViewRgb.setText(
 				"RGB: ".concat(Integer.toString(red , 10)).
