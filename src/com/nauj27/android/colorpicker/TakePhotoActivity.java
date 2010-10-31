@@ -178,7 +178,6 @@ public class TakePhotoActivity extends Activity {
 			try {
 				camera.setPreviewDisplay(surfaceHolder);
 			} catch (IOException ioException) {
-				//Log.e(TAG, "Error setting preview display");
 				if (camera != null) {
 					camera.release();
 					camera = null;
