@@ -124,7 +124,6 @@ public class ColorPickerActivity extends Activity {
         imageView.setOnTouchListener(new OnTouchListener() {
 			@Override
 			public boolean onTouch(View view, MotionEvent motionEvent) {
-				//Log.d(TAG, "Screen touched");
 				
 				int action = motionEvent.getAction();
 				
@@ -132,7 +131,6 @@ public class ColorPickerActivity extends Activity {
 					case(MotionEvent.ACTION_DOWN):
 						int x = (int)motionEvent.getX();
 						int y = (int)motionEvent.getY();
-						//Log.d(TAG, "Position: " + x + ", " + y);
 						
 						int color = Utils.findColor(view, x, y);
 						if (ralColor == null) { 
@@ -172,7 +170,6 @@ public class ColorPickerActivity extends Activity {
     	// I really don't know if Android calls onPrepareDialog when
     	// dialog is null.
     	if ((dialog == null) || (ralColor == null)) {
-    		//Log.w(TAG, "Error preparing result dialog.");
     		return;
     	}
     	

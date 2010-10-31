@@ -46,7 +46,6 @@ import android.widget.ImageButton;
  * Extends Activity
  */
 public class TakePhotoActivity extends Activity {
-	//private static final String TAG = "TakePhotoActivity";
 	
 	private static final int MENU_TAKE_PHOTO_ITEM = 0;
 	private static final int MENU_ABOUT_ITEM = 1;
