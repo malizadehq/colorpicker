@@ -126,13 +126,21 @@ public class ColorPickerActivity extends Activity {
 			public boolean onTouch(View view, MotionEvent motionEvent) {
 				
 				int action = motionEvent.getAction();
-				
 				switch(action) {
 					case(MotionEvent.ACTION_DOWN):
 						int x = (int)motionEvent.getX();
 						int y = (int)motionEvent.getY();
+						int color;
+
+						// Must check for null pointer cause "Droid" report
+						// this error once in the market developer website
+						try {
+							color = Utils.findColor(view, x, y);
+						} catch (NullPointerException e) {
+							return false;
+						}
 						
-						int color = Utils.findColor(view, x, y);
+						// Check if ralColor already exist as RalColor
 						if (ralColor == null) { 
 							ralColor = new RalColor(color);
 						} else {

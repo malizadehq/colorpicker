@@ -50,7 +50,8 @@ public class Utils {
      * @param y Distance from top of the View
      * @param view Touched surface on screen
      */
-	public static int findColor(View view, int x, int y) {
+	public static int findColor(View view, int x, int y) 
+	throws NullPointerException {
 		
 		int red = 0;
     	int green = 0;
