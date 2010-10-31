@@ -7,6 +7,7 @@
 <string name="help_message">使用功能表鍵拍攝一張照片</string>
 <string name="take_photo_help">觸摸螢幕對焦並拍攝一張照片</string>
 <string name="color_picker_photo_help">觸摸螢幕選擇色彩</string>
+<string name="camera_error">無法訪問攝像頭</string>
 
 <string name="menu_take_photo_exit">結束</string>
 <string name="result_color_name">色彩名稱</string>

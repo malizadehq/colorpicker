@@ -7,6 +7,7 @@
 <string name="help_message">使用菜单键拍摄一张照片</string>
 <string name="take_photo_help">触摸屏幕对焦并拍摄一张照片</string>
 <string name="color_picker_photo_help">触摸屏幕选择颜色</string>
+<string name="camera_error">无法访问摄像头</string>
 
 <string name="menu_take_photo_exit">退出</string>
 <string name="result_color_name">颜色名称</string>

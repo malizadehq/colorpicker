@@ -39,6 +39,7 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageButton;
+import android.widget.Toast;
 
 /**
  * This activity make focus and take a photo.
@@ -168,6 +169,7 @@ public class TakePhotoActivity extends Activity {
 		public void surfaceCreated(SurfaceHolder surfaceHolder) {
 			try {
 				camera = Camera.open();
+				
 			} catch (RuntimeException rtException) {
 				if (camera != null) {
 					camera.release();
@@ -175,8 +177,21 @@ public class TakePhotoActivity extends Activity {
 				}
 			}
 			
+			
 			try {
 				camera.setPreviewDisplay(surfaceHolder);
+				
+			} catch (NullPointerException npException) {
+				// If we can't open camera show error and exist app
+				CharSequence charSequence = getString(R.string.camera_error);
+		    	int duration = Toast.LENGTH_LONG;
+		    	Toast toast = Toast.makeText(
+		    			getApplicationContext(), 
+		    			charSequence, 
+		    			duration);
+		    	toast.show();
+		    	finish();
+		    	
 			} catch (IOException ioException) {
 				if (camera != null) {
 					camera.release();
