@@ -6,6 +6,7 @@
 <string name="help_message">Haz una foto usando la tecla menu</string>
 <string name="take_photo_help">Toca la pantalla para enfocar y hacer una foto</string>
 <string name="color_picker_photo_help">Toca la pantalla para seleccionar un color</string>
+<string name="camera_error">No se puede acceder a la cámara</string>
 
 <string name="menu_take_photo_exit">Salir</string>
 <string name="result_color_name">Nombre del color</string>

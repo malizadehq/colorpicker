@@ -7,6 +7,7 @@
 <string name="help_message">메뉴키를 눌러 사진 촬영</string>
 <string name="take_photo_help">포커스 터치 후 사진 촬영</string>
 <string name="color_picker_photo_help">색상을 얻으려는 화면 터치</string>
+<string name="camera_error">카메라에 액세스할 수 없습니다</string>
 
 <string name="menu_take_photo_exit">종료</string>
 <string name="result_color_name">색상 이름</string>

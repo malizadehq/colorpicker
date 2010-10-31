@@ -6,6 +6,7 @@
 <string name="help_message">Nehmen Sie ein Bild mit dem Menü-Taste</string>
 <string name="take_photo_help">Touch-Screen zu fokussieren und ein Bild</string>
 <string name="color_picker_photo_help">Berühren Sie den Bildschirm zu holen die Farbe</string>
+<string name="camera_error">Kann nicht auf die Kamera zugreifen</string>
 
 <string name="menu_take_photo_exit">Schließen</string>
 <string name="result_color_name">Farbname</string>
