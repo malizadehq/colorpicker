@@ -19,6 +19,7 @@
 package com.nauj27.android.colorpicker;
 
 import java.io.IOException;
+import java.util.List;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -29,7 +30,9 @@ import android.content.res.Configuration;
 import android.graphics.PixelFormat;
 import android.hardware.Camera;
 import android.hardware.Camera.AutoFocusCallback;
+import android.hardware.Camera.Parameters;
 import android.hardware.Camera.PictureCallback;
+import android.hardware.Camera.Size;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -53,6 +56,7 @@ public class TakePhotoActivity extends Activity {
 	private static final int MENU_EXIT_ITEM = 10; // The last one.
 	
 	private static final int DIALOG_ABOUT_ID = 0;
+	private static final int FIRST = 0;
 	
 	private Camera camera = null;
 	
@@ -146,21 +150,40 @@ public class TakePhotoActivity extends Activity {
 		public void surfaceChanged(
 				SurfaceHolder surfaceHolder, int format, int width, int height) {
 			
-			Camera.Parameters cameraParameters = camera.getParameters();
+			// FIXME: 
+			// set sizes to the nearest to the screen resolution of the device?
 			
-			if (Utils.isMotorola(android.os.Build.MODEL)) {
-				cameraParameters.setPictureSize(
-					PICTURE_SIZE_WIDTH_MOTOROLA, PICTURE_SIZE_HEIGHT_MOTOROLA);
-			} else {
-				cameraParameters.setPictureSize(
-					PICTURE_SIZE_WIDTH, PICTURE_SIZE_HEIGHT);
-			}
-			
-			cameraParameters.setPreviewSize(PREVIEW_SIZE_WIDTH, PREVIEW_SIZE_HEIGHT);
-			cameraParameters.setPictureFormat(PixelFormat.JPEG);
-			
+			// Get current parameters of the camera object
 			if (camera != null) {
-				camera.setParameters(cameraParameters);
+				Parameters parameters = camera.getParameters();
+			
+				// Retrieve the supported picture sizes and pick the first one
+				List<Size> supportedPictureSizes = parameters.getSupportedPictureSizes();
+				Size size = supportedPictureSizes.get(FIRST);
+				parameters.setPictureSize(size.width, size.height);
+				
+				// Retrieve and set the first of the supported preview sizes
+				List<Size> supportedPreviewSizes = parameters.getSupportedPreviewSizes();
+				size = supportedPreviewSizes.get(FIRST);
+				parameters.setPreviewSize(size.width, size.height);
+				
+				// Retrieve and set the first of the supported picture formats
+				List<Integer> supportedPictureFormats = parameters.getSupportedPictureFormats();
+				Integer pictureFormat = supportedPictureFormats.get(FIRST);
+				parameters.setPictureFormat(pictureFormat);
+				
+				//if (Utils.isMotorola(android.os.Build.MODEL)) {
+				//	parameters.setPictureSize(
+				//		PICTURE_SIZE_WIDTH_MOTOROLA, PICTURE_SIZE_HEIGHT_MOTOROLA);
+				//} else {
+				//	parameters.setPictureSize(
+				//		PICTURE_SIZE_WIDTH, PICTURE_SIZE_HEIGHT);
+				//}
+				
+				//parameters.setPreviewSize(PREVIEW_SIZE_WIDTH, PREVIEW_SIZE_HEIGHT);
+				//parameters.setPictureFormat(PixelFormat.JPEG);
+				
+				camera.setParameters(parameters);
 				camera.startPreview();
 			}
 		}

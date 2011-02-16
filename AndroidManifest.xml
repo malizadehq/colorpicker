@@ -5,7 +5,7 @@
     <application android:icon="@drawable/icon" android:label="@string/app_name">
         <activity android:name=".ColorPickerActivity" android:label="@string/app_name" android:configChanges="keyboard|keyboardHidden|orientation" android:screenOrientation="landscape">    
         </activity>
-        <activity android:name="TakePhotoActivity" android:configChanges="keyboard|keyboardHidden|orientation" android:screenOrientation="landscape">
+        <activity android:configChanges="keyboard|keyboardHidden|orientation" android:screenOrientation="landscape" android:name=".TakePhotoActivity">
             <intent-filter>
 	            <action android:name="android.intent.action.MAIN" />
 	            <category android:name="android.intent.category.LAUNCHER" />
@@ -17,6 +17,6 @@
     <uses-feature android:name="android.hardware.camera" />
     <uses-feature android:name="android.hardware.camera.autofocus" />
     
-    <uses-sdk android:minSdkVersion="3" />
+    <uses-sdk android:minSdkVersion="7"/>
 
 </manifest> 
