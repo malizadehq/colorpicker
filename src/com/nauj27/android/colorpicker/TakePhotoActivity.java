@@ -34,6 +34,7 @@ import android.hardware.Camera.Parameters;
 import android.hardware.Camera.PictureCallback;
 import android.hardware.Camera.Size;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.SurfaceHolder;
@@ -65,8 +66,13 @@ public class TakePhotoActivity extends Activity {
 	private static final int PICTURE_SIZE_HEIGHT = 384;
 	private static final int PICTURE_SIZE_WIDTH_MOTOROLA = 640;
 	private static final int PICTURE_SIZE_HEIGHT_MOTOROLA = 480;
+	private static final int PICTURE_SIZE_WIDTH_EMULATOR = 213;
+	private static final int PICTURE_SIZE_HEIGHT_EMULATOR = 350;
+	
 	private static final int PREVIEW_SIZE_WIDTH = 352;
 	private static final int PREVIEW_SIZE_HEIGHT = 288;
+	private static final int PREVIEW_SIZE_WIDTH_EMULATOR = 176;
+	private static final int PREVIEW_SIZE_HEIGHT_EMULATOR = 144;
 	
 	/** Called when the activity is first created. */
 	@Override
@@ -155,33 +161,49 @@ public class TakePhotoActivity extends Activity {
 			
 			// Get current parameters of the camera object
 			if (camera != null) {
+				
+				Size size = null;
 				Parameters parameters = camera.getParameters();
 			
 				// Retrieve the supported picture sizes and pick the first one
-				List<Size> supportedPictureSizes = parameters.getSupportedPictureSizes();
-				Size size = supportedPictureSizes.get(FIRST);
+				List<Size> supportedPictureSizes = parameters.getSupportedPictureSizes();				
+				try {
+					size = supportedPictureSizes.get(FIRST);
+					
+				} catch (NullPointerException nullPointerException) {
+					if (Utils.isMotorola(android.os.Build.MODEL)) {
+						size = camera.new Size(
+								PICTURE_SIZE_WIDTH_MOTOROLA, 
+								PICTURE_SIZE_HEIGHT_MOTOROLA);
+					} else if (Utils.isAndroidEmulator(android.os.Build.MODEL)) {
+						size = camera.new Size(
+								PICTURE_SIZE_WIDTH_EMULATOR,
+								PICTURE_SIZE_HEIGHT_EMULATOR);
+					} else {
+						size = camera.new Size(
+								PICTURE_SIZE_WIDTH, PICTURE_SIZE_HEIGHT);
+					}
+				}
 				parameters.setPictureSize(size.width, size.height);
 				
 				// Retrieve and set the first of the supported preview sizes
 				List<Size> supportedPreviewSizes = parameters.getSupportedPreviewSizes();
-				size = supportedPreviewSizes.get(FIRST);
+				try {
+					size = supportedPreviewSizes.get(FIRST);
+					
+				} catch (NullPointerException nullPointerException) {
+					size = camera.new Size(
+								PREVIEW_SIZE_WIDTH_EMULATOR,
+								PREVIEW_SIZE_HEIGHT_EMULATOR);
+				}
 				parameters.setPreviewSize(size.width, size.height);
 				
 				// Retrieve and set the first of the supported picture formats
-				List<Integer> supportedPictureFormats = parameters.getSupportedPictureFormats();
-				Integer pictureFormat = supportedPictureFormats.get(FIRST);
-				parameters.setPictureFormat(pictureFormat);
+				//List<Integer> supportedPictureFormats = parameters.getSupportedPictureFormats();
+				//Integer pictureFormat = supportedPictureFormats.get(FIRST);
+				//parameters.setPictureFormat(pictureFormat);
 				
-				//if (Utils.isMotorola(android.os.Build.MODEL)) {
-				//	parameters.setPictureSize(
-				//		PICTURE_SIZE_WIDTH_MOTOROLA, PICTURE_SIZE_HEIGHT_MOTOROLA);
-				//} else {
-				//	parameters.setPictureSize(
-				//		PICTURE_SIZE_WIDTH, PICTURE_SIZE_HEIGHT);
-				//}
-				
-				//parameters.setPreviewSize(PREVIEW_SIZE_WIDTH, PREVIEW_SIZE_HEIGHT);
-				//parameters.setPictureFormat(PixelFormat.JPEG);
+				parameters.setPictureFormat(PixelFormat.JPEG);
 				
 				camera.setParameters(parameters);
 				camera.startPreview();

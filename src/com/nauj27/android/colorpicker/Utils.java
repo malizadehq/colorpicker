@@ -110,4 +110,14 @@ public class Utils {
 		
 		return false;
 	}
+
+	/**
+	 * Returns if the model is from android sdk emulator.
+	 * @param model the current model
+	 * @return boolean value indicating if is the android sdk emulator
+	 */
+	public static boolean isAndroidEmulator(String model) {
+		
+		return (model.compareToIgnoreCase("sdk") == 0);
+	}
 }
