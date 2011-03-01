@@ -24,6 +24,7 @@ import java.util.List;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
@@ -35,6 +36,7 @@ import android.hardware.Camera.PictureCallback;
 import android.hardware.Camera.Size;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Display;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.SurfaceHolder;
@@ -60,6 +62,8 @@ public class TakePhotoActivity extends Activity {
 	private static final int FIRST = 0;
 	
 	private Camera camera = null;
+	private int displayWidth = 0;
+	private int displayHeight = 0;
 	
 	// FIXME: size is not standard, but only can use getValid in 2.1 :(
 	private static final int PICTURE_SIZE_WIDTH = 512;
@@ -99,7 +103,10 @@ public class TakePhotoActivity extends Activity {
 		SurfaceHolder surfaceHolder = surfaceView.getHolder();
 		surfaceHolder.addCallback(surfaceCallback);
 		surfaceHolder.setType(SurfaceHolder.SURFACE_TYPE_PUSH_BUFFERS);
-				
+		
+		Display display = ((WindowManager) getSystemService(Context.WINDOW_SERVICE)).getDefaultDisplay();
+		displayWidth = display.getWidth();
+		displayHeight = display.getHeight();
 	}
 	
 	/**
@@ -156,46 +163,23 @@ public class TakePhotoActivity extends Activity {
 		public void surfaceChanged(
 				SurfaceHolder surfaceHolder, int format, int width, int height) {
 			
-			// FIXME: 
-			// set sizes to the nearest to the screen resolution of the device?
-			
 			// Get current parameters of the camera object
 			if (camera != null) {
 				
 				Size size = null;
 				Parameters parameters = camera.getParameters();
 			
-				// Retrieve the supported picture sizes and pick the first one
 				List<Size> supportedPictureSizes = parameters.getSupportedPictureSizes();				
-				try {
-					size = supportedPictureSizes.get(FIRST);
-					
-				} catch (NullPointerException nullPointerException) {
-					if (Utils.isMotorola(android.os.Build.MODEL)) {
-						size = camera.new Size(
-								PICTURE_SIZE_WIDTH_MOTOROLA, 
-								PICTURE_SIZE_HEIGHT_MOTOROLA);
-					} else if (Utils.isAndroidEmulator(android.os.Build.MODEL)) {
-						size = camera.new Size(
-								PICTURE_SIZE_WIDTH_EMULATOR,
-								PICTURE_SIZE_HEIGHT_EMULATOR);
-					} else {
-						size = camera.new Size(
-								PICTURE_SIZE_WIDTH, PICTURE_SIZE_HEIGHT);
-					}
-				}
+				size = Utils.getBestSize(camera, supportedPictureSizes,
+						false, displayWidth, displayHeight);
+				// FIXME: size can be null at this moment!!
 				parameters.setPictureSize(size.width, size.height);
 				
 				// Retrieve and set the first of the supported preview sizes
 				List<Size> supportedPreviewSizes = parameters.getSupportedPreviewSizes();
-				try {
-					size = supportedPreviewSizes.get(FIRST);
-					
-				} catch (NullPointerException nullPointerException) {
-					size = camera.new Size(
-								PREVIEW_SIZE_WIDTH_EMULATOR,
-								PREVIEW_SIZE_HEIGHT_EMULATOR);
-				}
+				size = Utils.getBestSize(camera, supportedPreviewSizes,
+						false, displayWidth, displayHeight);
+				// FIXME: size can be null at this moment!!
 				parameters.setPreviewSize(size.width, size.height);
 				
 				// Retrieve and set the first of the supported picture formats

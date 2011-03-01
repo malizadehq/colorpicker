@@ -105,7 +105,7 @@ public class RalColor {
 		double differencetmp = 0;
 		
 		for (int i = 0; i < RalSystem.code.length; i++) {
-			// Euclidian distance in 3D color space 
+			// Euclidean distance in 3D color space 
 			differencetmp = Math.sqrt(
 				Math.pow(RalSystem.red[i] - Color.red(color), 2) +
 				Math.pow(RalSystem.green[i] - Color.green(color), 2) +
