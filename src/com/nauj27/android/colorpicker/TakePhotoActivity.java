@@ -178,7 +178,7 @@ public class TakePhotoActivity extends Activity {
 				// Retrieve and set the first of the supported preview sizes
 				List<Size> supportedPreviewSizes = parameters.getSupportedPreviewSizes();
 				size = Utils.getBestSize(camera, supportedPreviewSizes,
-						false, displayWidth, displayHeight);
+						true, displayWidth, displayHeight);
 				// FIXME: size can be null at this moment!!
 				parameters.setPreviewSize(size.width, size.height);
 				
