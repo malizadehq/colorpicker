@@ -109,8 +109,7 @@ public class ColorPickerActivity extends Activity {
 			
 			// Show a bit of help to the user :)
 	    	CharSequence charSequence = getString(R.string.color_picker_photo_help);
-	    	int duration = Toast.LENGTH_SHORT;
-	    	Toast toast = Toast.makeText(context, charSequence, duration);
+	    	Toast toast = Toast.makeText(context, charSequence, Toast.LENGTH_SHORT);
 	    	toast.show();
 
         } else {

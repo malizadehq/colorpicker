@@ -18,10 +18,14 @@
  */
 package com.nauj27.android.colorpicker;
 
+import java.util.Iterator;
+import java.util.List;
+
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
-//import android.util.Log;
+import android.hardware.Camera;
+import android.hardware.Camera.Size;
 import android.view.View;
 import android.widget.ImageView;
 
@@ -30,6 +34,8 @@ import android.widget.ImageView;
  *
  */
 public class Utils {
+	
+	
 	
 	/**
 	 * Fill hex string with "0" when hexString minor than F.
@@ -92,6 +98,64 @@ public class Utils {
     	blue = blue / pixelsNumber;
     	
     	return Color.rgb(red, green, blue); 
+	}
+	
+	/**
+	 * Return the supported picture size that best fits on the device screen.
+	 * @param camera the camera to instantiate new Size objects
+	 * @param supportedPictureSizes list of supported sizes
+	 * @param preview if the supported size is for preview image
+	 * @param displayWidth the width of the physical display
+	 * @param displayHeight the height of the physical display
+	 * @return nearest Camera.Size to device screen 
+	 */
+	public static Camera.Size getBestSize(
+			Camera camera,
+			List<Size> supportedSizes,
+			boolean preview,
+			int displayWidth,
+			int displayHeight) {
+		
+		final int PREVIEW_SIZE_WIDTH_EMULATOR = 176;
+		final int PREVIEW_SIZE_HEIGHT_EMULATOR = 144;
+		final int PICTURE_SIZE_WIDTH_EMULATOR = 213;
+		final int PICTURE_SIZE_HEIGHT_EMULATOR = 350;
+
+		double temporalDiff = 0;
+		double diff = Integer.MAX_VALUE;
+		
+		Camera.Size size = null;
+		Camera.Size supportedSize = null;
+		
+		if (supportedSizes == null) {
+			if (isAndroidEmulator(android.os.Build.MODEL)) {
+				if (preview) {
+					size = camera.new Size(
+							PREVIEW_SIZE_WIDTH_EMULATOR,
+							PREVIEW_SIZE_HEIGHT_EMULATOR);					
+				} else {
+					size = camera.new Size(
+							PICTURE_SIZE_WIDTH_EMULATOR,
+							PICTURE_SIZE_HEIGHT_EMULATOR);
+				}
+			}
+		} else {
+			Iterator<Size> iterator = supportedSizes.iterator();
+			while (iterator.hasNext()) {
+				supportedSize = iterator.next();
+				temporalDiff = Math.sqrt(
+					Math.pow(supportedSize.width - displayWidth, 2) +
+					Math.pow(supportedSize.height - displayHeight, 2));
+				
+				if (temporalDiff < diff) {
+					diff = temporalDiff;
+					size = supportedSize;
+				}
+			}
+			
+		}
+		
+		return size;
 	}
 	
 	/**
