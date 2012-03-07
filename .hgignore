@@ -7,3 +7,4 @@ syntax: glob
 # Fichero que crea el Finder de Mac OS X
 .DS_Store
 glob:R.java
+glob:project.properties
