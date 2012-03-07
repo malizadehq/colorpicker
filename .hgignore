@@ -3,6 +3,7 @@ syntax: glob
 *.apk
 *.dex
 *.ap_
+bin/*
 
 # Fichero que crea el Finder de Mac OS X
 .DS_Store

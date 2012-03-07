@@ -114,7 +114,13 @@ public class TakePhotoActivity extends Activity {
 	private AutoFocusCallback autoFocusCallback = new AutoFocusCallback() {
 		@Override
 		public void onAutoFocus(boolean arg0, Camera camera) {
-	        camera.takePicture(null, null, jpegCallback);			
+			try {
+				camera.takePicture(null, null, jpegCallback);
+			} catch (RuntimeException runtimeException) {
+				Toast toast = Toast.makeText(getBaseContext(), 
+						R.string.camera_error, Toast.LENGTH_LONG);
+				toast.show();
+			}
 		}
 	};
 	
