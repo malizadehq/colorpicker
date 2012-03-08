@@ -83,7 +83,10 @@ public class ColorPickerActivity extends Activity {
         // Get JPEG image from extras from the Intent that launch this activity
         Bundle bundleExtras = getIntent().getExtras();
         if (bundleExtras.containsKey(JPEG_PICTURE)) {
-        	byte[] jpegPicture = bundleExtras.getByteArray(JPEG_PICTURE);    			
+        	byte[] jpegPicture = bundleExtras.getByteArray(JPEG_PICTURE);
+        	if (jpegPicture == null) {
+        		finishActivity(RESULT_CANCELED);
+        	}
 			
 			int offset = 0;
 			int length = jpegPicture.length;
