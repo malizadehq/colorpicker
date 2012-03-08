@@ -145,9 +145,11 @@ public class TakePhotoActivity extends Activity {
 	private SurfaceHolder.Callback surfaceCallback = new SurfaceHolder.Callback() {
 		@Override
 		public void surfaceDestroyed(SurfaceHolder surfaceHolder) {
-			camera.stopPreview();
-			camera.release();
-			camera = null;
+			if (camera != null) {
+				camera.stopPreview();
+				camera.release();
+				camera = null;
+			}
 		}
 
 		@Override
@@ -181,13 +183,31 @@ public class TakePhotoActivity extends Activity {
 				}
 				
 				// Retrieve and set the supported picture format
-				List<Integer> supportedPictureFormats = parameters.getSupportedPictureFormats();
-				if (supportedPictureFormats.contains(PixelFormat.JPEG)) {
-					parameters.setPictureFormat(PixelFormat.JPEG);
+				
+				try {
+					List<Integer> supportedPictureFormats = parameters.getSupportedPictureFormats();
+					if (supportedPictureFormats.contains(PixelFormat.JPEG)) {
+						parameters.setPictureFormat(PixelFormat.JPEG);
+					}
+				} catch (NullPointerException e) {
+					// Notify the user and exit the application
 				}
 				
 				camera.setParameters(parameters);
-				camera.startPreview();
+				
+				try {
+					camera.startPreview();
+				} catch (RuntimeException runtimeException) {
+					Toast toast = Toast.makeText(getBaseContext(), R.string.camera_error, Toast.LENGTH_SHORT);
+					toast.show();
+					
+					if (runtimeException.getMessage() != null) {
+						toast.setText(runtimeException.getMessage());
+						toast.setDuration(Toast.LENGTH_LONG);
+						toast.show();
+					}
+				}
+				
 			} else {
 				// Notify the user and exit the application
 			}
