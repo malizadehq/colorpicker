@@ -1,6 +1,6 @@
 /**
- *  Color Picker by Juan Mart√≠n
- *  Copyright (C) 2010 nauj27.com
+ *  Color Picker by Juan Martín
+ *  Copyright (C) 2012 nauj27.com
  *
  *  This program is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -19,7 +19,6 @@
 package com.nauj27.android.colorpicker.ral;
 
 import android.graphics.Color;
-
 
 /**
  * @author nauj27
