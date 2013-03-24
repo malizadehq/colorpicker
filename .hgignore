@@ -4,6 +4,7 @@ syntax: glob
 *.dex
 *.ap_
 bin/*
+gen/*
 
 # Fichero que crea el Finder de Mac OS X
 .DS_Store
