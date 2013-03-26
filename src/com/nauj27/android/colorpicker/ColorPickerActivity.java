@@ -1,5 +1,5 @@
 /**
- *  Color Picker by Juan Martín
+ *  Color Picker by Juan Mart√≠n
  *  Copyright (C) 2012 nauj27.com
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -52,7 +52,7 @@ import android.widget.Toast;
 import com.nauj27.android.colorpicker.ral.RalColor;
 
 /**
- * @author Juan Martín
+ * @author Juan Mart√≠n
  *
  */
 public class ColorPickerActivity extends Activity {
