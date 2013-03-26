@@ -1,5 +1,5 @@
 /**
- *  Color Picker by Juan Martín
+ *  Color Picker by Juan Mart√≠n
  *  Copyright (C) 2012 nauj27.com
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -25,7 +25,7 @@ import android.view.View;
 import android.widget.ImageView;
 
 /**
- * @author Juan Martín
+ * @author Juan Mart√≠n
  *
  */
 public class Utils {
