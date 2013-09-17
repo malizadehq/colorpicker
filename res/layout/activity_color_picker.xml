@@ -1,7 +1,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/LinearLayoutMain"
-    android:layout_width="match_parent"
+    android:layout_width="fill_parent"
     android:layout_height="match_parent"
     android:orientation="vertical" >
 
@@ -13,12 +13,12 @@
 
         <ImageView
             android:id="@+id/imageView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
             android:layout_gravity="center"
-            android:adjustViewBounds="true"
+            android:adjustViewBounds="false"
             android:contentDescription="@string/image_description"
-            android:scaleType="fitStart"
+            android:scaleType="matrix"
             android:src="@drawable/bg_init" />
 
     </FrameLayout>
