@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="color_padding">10dip</dimen>
+    <dimen name="color_info_padding">24dip</dimen>
+    <dimen name="five_dip">5dip</dimen>
+</resources>
