@@ -126,7 +126,7 @@ public class ColorPickerActivity extends Activity {
 	}
 	
 	protected void updateResultData() {
-		int index = 0;
+		int index;
 		int red = Color.red(ralColor.getColor());
 		int green = Color.green(ralColor.getColor());
 		int blue = Color.blue(ralColor.getColor());
@@ -139,10 +139,11 @@ public class ColorPickerActivity extends Activity {
 		try {
 			textViewColorName.setText(colorNames[index]);
 		} catch (ArrayIndexOutOfBoundsException e) {
-			// FIXME: something is wrong with indexes. Maybe there is one
-			// more color than color names :-?
-			// Maybe the user can see odd color names!! Please test!!
-			textViewColorName.setText(colorNames[colorNames.length-1]);
+            //
+            //FIXME: something is wrong with indexes. Maybe there is one more color than names
+            //Maybe the user can see odd color names!! Please test!!
+            //
+            textViewColorName.setText(colorNames[colorNames.length-1]);
 		}
 		
 		
@@ -448,7 +449,6 @@ public class ColorPickerActivity extends Activity {
 
 	/**
 	 * Shows the image captured by the camera into the image view
-	 * @param data
 	 * @throws FileNotFoundException 
 	 */
 	private void showCapturedImage() throws 
@@ -521,7 +521,10 @@ public class ColorPickerActivity extends Activity {
 	    // To be safe, you should check that the SDCard is mounted
 	    // using Environment.getExternalStorageState() before doing this.
 
-	    File mediaStorageDir = new File(
+        File mediaFile;
+        File mediaStorageDir;
+
+	    mediaStorageDir = new File(
 	    		Environment.getExternalStoragePublicDirectory(
 	    			Environment.DIRECTORY_PICTURES), APPLICATION_NAME);
 
@@ -536,16 +539,17 @@ public class ColorPickerActivity extends Activity {
 	    // Create a media file pseudo random name
 	    String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss", Locale.US).
 	    		format(new Date());
-        File mediaFile = new File(mediaStorageDir.getPath() + File.separator +
+
+        mediaFile = new File(mediaStorageDir.getPath() + File.separator +
         		"IMG_"+ timeStamp + ".jpg");
 
-	    return mediaFile;
+        return mediaFile;
 	}
 	
 	/**
 	 * Get the real path from URI.
-	 * @param contentUri
-	 * @return
+	 * @param contentUri The Uri of the media image file
+	 * @return The real path from URI
 	 * @throws UnsupportedEncodingException 
 	 */
 	@SuppressWarnings("deprecation")
