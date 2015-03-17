@@ -1,6 +1,6 @@
 /**
  *  Color Picker by Juan Martín
- *  Copyright (C) 2012 nauj27.com
+ *  Copyright (C) 2012 - 2015 nauj27.com
  *
  *  This program is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -38,7 +38,7 @@ public class RalColor {
 	/**
 	 * Creates a new RalColor without index value
 	 */
-	public RalColor() {}
+	//public RalColor() {}
 	
 	/**
 	 * Search and set the RAL index of a color integer and the difference.
@@ -61,9 +61,9 @@ public class RalColor {
 	/**
 	 * @param index the index to set
 	 */
-	public void setIndex(int index) {
-		this.index = index;
-	}
+//	public void setIndex(int index) {
+//		this.index = index;
+//	}
 
 	/**
 	 * @return the index
@@ -75,16 +75,16 @@ public class RalColor {
 	/**
 	 * @param difference the difference to set
 	 */
-	public void setDifference(double difference) {
-		this.difference = difference;
-	}
+//	public void setDifference(double difference) {
+//		this.difference = difference;
+//	}
 
 	/**
 	 * @return the difference
 	 */
-	public double getDifference() {
-		return this.difference;
-	}
+//	public double getDifference() {
+//		return this.difference;
+//	}
 
 	/**
 	 * @return the color
@@ -101,17 +101,17 @@ public class RalColor {
 		this.color = color;
 		this.difference = MAX_COLOR_DIFFERENCE;
 		
-		double differencetmp = 0;
+		double difference_tmp;
 		
 		for (int i = 0; i < RalSystem.code.length; i++) {
 			// Euclidian distance in 3D color space 
-			differencetmp = Math.sqrt(
+			difference_tmp = Math.sqrt(
 				Math.pow(RalSystem.red[i] - Color.red(color), 2) +
 				Math.pow(RalSystem.green[i] - Color.green(color), 2) +
 				Math.pow(RalSystem.blue[i] - Color.blue(color), 2));
 			
-			if (differencetmp < this.difference) {
-				this.difference = differencetmp;
+			if (difference_tmp < this.difference) {
+				this.difference = difference_tmp;
 				this.index = i;
 			}
 		}
