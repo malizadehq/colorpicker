@@ -1,12 +1,34 @@
-syntax: glob
-*.class
-*.apk
-*.dex
-*.ap_
-bin/*
-gen/*
+# Built application files
+glob:*.apk
+glob:*.ap_
 
-# Fichero que crea el Finder de Mac OS X
+# Files for the dex VM
+glob:*.dex
+
+# Java class files
+glob:*.class
+
+# Generated files
+bin/
+gen/
+
+# Ignore gradle files
+.gradle
+build
+glob:*.iml
+gradlew
+gradlew.bat
+app/build$
+
+# Local configuration file (sdk path, etc)
+local.properties
+
+# Android Studio
+.idea/workspace.xml
+.idea/tasks.xml
+.iws
+
+# Finder Mac OS X file
 .DS_Store
 glob:R.java
 glob:project.properties
