@@ -1,3 +1,4 @@
+# ColorPicker #
 Take a photo and detect the color of any touched point.
 
 Show hex code, RGB values, RAL System name (ralcolor.com), and even the color name in this system.
