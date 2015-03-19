@@ -1,11 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.nauj27.android.colorpicker"
-    android:versionCode="20130326"
-    android:versionName="3.1" >
+    package="com.nauj27.android.colorpicker" >
 
-    <uses-sdk
-        android:minSdkVersion="10"
-        android:targetSdkVersion="22" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
 
     <application
