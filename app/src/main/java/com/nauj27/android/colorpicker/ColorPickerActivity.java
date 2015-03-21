@@ -217,18 +217,32 @@ public class ColorPickerActivity extends Activity {
 			}
 		}
 
-		if (savedInstanceState != null) {
-            Log.d(this.getClass().getSimpleName(), "Restoring saved instance");
-			String photoUriPath = savedInstanceState.getString(KEY_PHOTO_PATH);
-			if (photoUriPath != null) {
-                photoUri = Uri.parse(photoUriPath);
-            }
+        // Get the intent that started this activity
+        Intent receivedIntent = getIntent();
+        String receivedIntentAction = receivedIntent.getAction();
 
-			if (savedInstanceState.containsKey(KEY_COLOR_COMPONENTS)) {
-				ralColor = new RalColor(
-						savedInstanceState.getInt(KEY_COLOR_COMPONENTS));
-			}
-		}
+        // Figure out what to do based on the intent type
+        if (receivedIntentAction.equals(Intent.ACTION_SEND)) {
+            photoUri = (Uri)receivedIntent.getParcelableExtra(Intent.EXTRA_STREAM);
+
+
+        } else if(receivedIntentAction.equals(Intent.ACTION_MAIN)) {
+            if (savedInstanceState != null) {
+                Log.d(this.getClass().getSimpleName(), "Restoring saved instance");
+                String photoUriPath = savedInstanceState.getString(KEY_PHOTO_PATH);
+                if (photoUriPath != null) {
+                    photoUri = Uri.parse(photoUriPath);
+                }
+
+                if (savedInstanceState.containsKey(KEY_COLOR_COMPONENTS)) {
+                    ralColor = new RalColor(
+                            savedInstanceState.getInt(KEY_COLOR_COMPONENTS));
+                }
+            }
+        }
+
+
+
 	}
 	
 	protected void updateResultData() {
@@ -341,45 +355,66 @@ public class ColorPickerActivity extends Activity {
 		return true;
 	}
 
-	@Override
-	public boolean onOptionsItemSelected(MenuItem menuItem) {
+    @Override
+    public boolean onOptionsItemSelected(MenuItem menuItem) {
 
-		switch (menuItem.getItemId()) {
-		case R.id.picture_from_camera:
-			Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        switch (menuItem.getItemId()) {
+            case R.id.picture_from_camera:
+                Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
 
-			photoUri = MediaFile.getOutputMediaFileUri();
-			if (photoUri == null) {
-				Toast.makeText(
-						this, R.string.cant_write_external_storage,
-						Toast.LENGTH_LONG).show();
-				return true;
-			}
+                photoUri = MediaFile.getOutputMediaFileUri();
+                if (photoUri == null) {
+                    Toast.makeText(
+                            this, R.string.cant_write_external_storage,
+                            Toast.LENGTH_LONG).show();
+                    return true;
+                }
 
-			intent.putExtra(MediaStore.EXTRA_OUTPUT, photoUri);
-			startActivityForResult(intent, CAPTURE_ACTIVITY_REQUEST_CODE);
+                intent.putExtra(MediaStore.EXTRA_OUTPUT, photoUri);
+                startActivityForResult(intent, CAPTURE_ACTIVITY_REQUEST_CODE);
 
-			return true;
+                return true;
 
-		case R.id.picture_from_gallery:
-			Intent intentGallery = new Intent();
-			intentGallery.setType("image/*");
-			intentGallery.setAction(Intent.ACTION_GET_CONTENT);
+            case R.id.picture_from_gallery:
+                Intent intentGallery = new Intent();
+                intentGallery.setType("image/*");
+                intentGallery.setAction(Intent.ACTION_GET_CONTENT);
 
-			startActivityForResult(
-				Intent.createChooser(
-						intentGallery,
-						getString(R.string.select_picture)),
-				SELECT_ACTIVITY_REQUEST_CODE);
+                startActivityForResult(
+                        Intent.createChooser(
+                                intentGallery,
+                                getString(R.string.select_picture)),
+                        SELECT_ACTIVITY_REQUEST_CODE);
 
-			return true;
+                return true;
 
-		default:
-			return super.onOptionsItemSelected(menuItem);
-		}
-	}
-	
-	@Override
+            case R.id.share_color_result:
+                if (ralColor == null) return false;
+
+                int red = Color.red(ralColor.getColor());
+                int green = Color.green(ralColor.getColor());
+                int blue = Color.blue(ralColor.getColor());
+                String sharedString = "#".
+                        concat(Utils.beautyHexString(Integer.toHexString(red))).
+                        concat(Utils.beautyHexString(Integer.toHexString(green))).
+                        concat(Utils.beautyHexString(Integer.toHexString(blue)));
+
+                Intent sendIntent = new Intent();
+                sendIntent.setAction(Intent.ACTION_SEND);
+                sendIntent.putExtra(Intent.EXTRA_TEXT, sharedString);
+                sendIntent.setType("text/plain");
+
+                startActivity(Intent.createChooser(
+                        sendIntent, getResources().getText(R.string.share_color_result)));
+
+                return true;
+
+            default:
+                return super.onOptionsItemSelected(menuItem);
+        }
+    }
+
+    @Override
 	protected void onActivityResult(
 		int requestCode,
 		int resultCode,

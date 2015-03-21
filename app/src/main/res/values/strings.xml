@@ -15,6 +15,8 @@
     <string name="text_view_rgb">RGB:</string>
     <string name="text_view_hex">HEX:</string>
     <string name="result_color">Color</string>
+    <string name="share_color_result">Share the color</string>
+    <string name="share">Share</string>
 
     <string-array name="color_names">
         <item>Green beige</item>
