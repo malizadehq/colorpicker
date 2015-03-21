@@ -1,0 +1,31 @@
+apply plugin: 'com.android.application'
+
+android {
+    signingConfigs {
+        config {
+            storeFile file('/Users/nauj27/Documents/AndroidSDK/Keystore/keystore')
+        }
+    }
+    compileSdkVersion 22
+    buildToolsVersion '22.0.0'
+    defaultConfig {
+        applicationId "com.nauj27.android.colorpicker"
+        minSdkVersion 10
+        targetSdkVersion 22
+        versionCode 20150321
+        versionName '4.1'
+        signingConfig signingConfigs.config
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
+        }
+    }
+    productFlavors {
+    }
+}
+
+dependencies {
+    compile files('libs/android-support-v13.jar')
+}

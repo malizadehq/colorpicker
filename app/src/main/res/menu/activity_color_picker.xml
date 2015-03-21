@@ -1,0 +1,28 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- item android:id="@+id/menu_settings"
+        android:title="@string/menu_settings"
+        android:orderInCategory="100"
+        android:showAsAction="never" android:icon="@drawable/ic_action_settings"/ -->
+    <group android:id="@+id/group_take_picture" android:orderInCategory="50">
+        <item android:id="@+id/picture_from_gallery"
+            android:title="@string/take_picture_from_gallery"
+            android:titleCondensed="@string/from_gallery"
+            android:icon="@drawable/ic_content_picture"
+            android:orderInCategory="20"
+            android:showAsAction="ifRoom" />
+
+        <item android:id="@+id/picture_from_camera"
+            android:title="@string/take_picture_from_camera"
+            android:showAsAction="ifRoom"
+            android:titleCondensed="@string/from_camera"
+            android:icon="@drawable/ic_device_access_camera"
+            android:orderInCategory="10" />
+    </group>
+
+    <item android:id="@+id/share_color_result"
+        android:title="@string/share_color_result"
+        android:showAsAction="ifRoom"
+        android:titleCondensed="@string/share"
+        android:icon="@drawable/ic_menu_share_holo_dark"
+        android:orderInCategory="100" />
+</menu>

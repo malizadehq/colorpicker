@@ -1,0 +1,36 @@
+# Built application files
+glob:*.apk
+glob:*.ap_
+
+# Files for the dex VM
+glob:*.dex
+
+# Java class files
+glob:*.class
+
+# Generated files
+bin/
+gen/
+
+# Ignore gradle files
+.gradle
+build
+glob:*.iml
+gradlew
+gradlew.bat
+app/build$
+
+# Local configuration file (sdk path, etc)
+local.properties
+
+# Android Studio
+.idea$
+.idea/workspace.xml
+.idea/tasks.xml
+.iws
+
+# Finder Mac OS X file
+.DS_Store
+glob:R.java
+glob:project.properties
+
